@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "login-clipmoney": {
+      "hosting": {
+        "money-clip": [
+          "login-clipmoney"
+        ]
+      }
+    }
+  }
+}

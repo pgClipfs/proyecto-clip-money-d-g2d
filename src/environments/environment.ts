@@ -3,7 +3,16 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  firebaseConfig: {
+    apiKey: "AIzaSyCfpxhx5s7qyRYagom32r00cS1A0N5hxmI",
+    authDomain: "login-clipmoney.firebaseapp.com",
+    databaseURL: "https://login-clipmoney.firebaseio.com",
+    projectId: "login-clipmoney",
+    storageBucket: "login-clipmoney.appspot.com",
+    messagingSenderId: "229155863172",
+    appId: "1:229155863172:web:f3d5b5fefed9adc559e0d1"
+  }
 };
 
 /*
