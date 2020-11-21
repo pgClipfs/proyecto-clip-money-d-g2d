@@ -13,7 +13,11 @@ export class NavbarComponent{
   public user$: Observable<any> = this.authSvc.afAuth.user;
   constructor(private authSvc: AuthService, private router: Router) { }
 
-
+  onToggle(){
+    console.log('oculto menu')
+    const navItems = document.querySelector('.navbar-collapse')
+    navItems.classList.toggle('ocultar_menu')
+  }
   async onLogout(){
     try {
       await this.authSvc.logout();
