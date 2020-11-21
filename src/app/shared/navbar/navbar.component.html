@@ -20,23 +20,30 @@
         </a>
       </li>
     </ul>
-    <ul class="navbar-nav mr-auto justify-content-end" id="login-items">
-        <li class="nav-item active">
-          <a class="nav-link" [routerLink]="['/login']"
-            >Login
-          </a>
-        </li>
-        <li class="nav-item active">
-            <a class="nav-link" href="/"
-              >Logout
+    <ul class="navbar-nav mx-auto" *ngIf= "user$ | async as user; else login" id="login-items">
+        <li class="nav-item" *ngIf="user">
+            <a href="#"class="nav-link" (click)="onLogout()"
+              >Cerrar sesión
             </a>
           </li>
-        <li class="nav-item active">
-            <a class="nav-link" [routerLink]="['/register']"
+        <li class="nav-item">
+          <a class="nav-link">{{user?.email}}</a>
+        </li>
+      </ul>
+      <ng-template #login>
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/login"
+              >Inicia sesión
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/register"
               >Registrate
             </a>
           </li>
-      </ul>
+        </ul>
+      </ng-template>
     
   </div>
 </nav>
