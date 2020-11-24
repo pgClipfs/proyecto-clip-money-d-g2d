@@ -134,5 +134,8 @@
       }
     }
   },
-  "defaultProject": "money-clip"
+  "defaultProject": "money-clip",
+  "cli": {
+    "analytics": false
+  }
 }
