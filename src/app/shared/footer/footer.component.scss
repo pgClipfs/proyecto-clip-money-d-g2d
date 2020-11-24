@@ -1,20 +1,20 @@
-footer {    
-    margin-top: 2em;
-    position: unset;
-    background-color: #3a3e42;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    color: whitesmoke;
-    border-width: 1px;
-    border-style: solid;
-    border-color: rgba(0, 0, 0, 0.795);
+footer {
+
+  background-color: #3a3e42;
+  bottom: 0;
+  color: whitesmoke;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgba(0, 0, 0, 0.795);
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }
 
-footer i {    
-    padding: 1em;
+footer i {
+  padding: 1em;
 }
 
 footer p {
-    padding-top: .4em;
+  padding-top: 4em;
 }
