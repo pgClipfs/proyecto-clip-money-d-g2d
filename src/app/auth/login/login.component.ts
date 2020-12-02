@@ -2,6 +2,11 @@ import {FormGroup, FormControl} from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
+import {LoginService} from '../../services/login.service'
+import { Login } from 'src/app/models/loginModel';
+import { NgForm } from '@angular/forms';
+
+
 
 
 @Component({
@@ -11,25 +16,63 @@ import { Router } from '@angular/router';
   providers: [AuthService]
 })
 export class LoginComponent implements OnInit {
+  public login: Login[];
+  selectedLogin: Login = new Login();
 
   loginForm= new FormGroup({
-    email: new FormControl(''),
+    usuario: new FormControl(''),
     password: new FormControl('')
   })
-  constructor(private authSvc: AuthService, private router: Router) { }
+  constructor(private authSvc: AuthService,private loginService: LoginService, private router: Router) { 
+    // const login = new Login()
+    // login.usuario = 'maria'
+    // login.pass = 'maria'
+    // this.loginService.userLogin(login)
+  }
+  
 
   ngOnInit(): void {
+
   }
-  async onLogin(){
-    const {email, password} = this.loginForm.value;
-    try {
-      const user = await this.authSvc.login(email, password);
-      if (user) {
-        this.router.navigate(['/home'])
-      }
-    } catch (error) {
-      console.log(error)
+  public onLogin(form: NgForm, login: Login){
+    console.log('click')
+    const {usuario, password} = this.loginForm.value;
+    if (form.invalid)
+    {
+      return;
     }
+    else
+    {
+      console.log('funca')
+      this.loginService.userLogin(login).subscribe(resp =>{
+        localStorage.setItem('token', resp);
+        this.router.navigate(['/home'])
+        console.log(resp)
+      },
+      err =>{
+        if(err.status == 401) alert("Compruebe su email o contraseña...")
+      });
+    }
+    console.log(this.selectedLogin);
+    // try {
+    //   const user = this.authSvc.login(email, password);
+    //   //const user =  this.http.post('http://localhost:44300/api/login/authenticate', {email: email, password: password} )
+     
+    //   // const user =  this.http.get('http://tlp.news/' )
+    //   // console.log('holis')
+    //   // console.log(this.http.get('http://tlp.news/' ))
+    //   // if (user) {
+    //   //   // this.router.navigate(['/home'])
+    //   //   console.log('holaa')
+    //   // }
+    //   this.loginService.userLogin(login).subscribe(resp =>{
+    //     localStorage.setItem('token', resp);
+    //     this.router.navigateByUrl('/micuenta');
+    //     console.log(resp);
+    // } 
+    // catch (error) {
+    //   console.log(error)
+    // }
   }
 
 }

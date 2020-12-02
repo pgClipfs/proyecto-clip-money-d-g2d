@@ -1,7 +1,10 @@
 import {AngularFireAuth} from '@angular/fire/auth'
 import { Injectable } from '@angular/core';
 import {first} from 'rxjs/operators';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+
 @Injectable()
+
 export class AuthService {
   constructor(public afAuth: AngularFireAuth) { }
 
@@ -41,3 +44,17 @@ export class AuthService {
     }
   }
 }
+
+// export class LoginService {
+//   constructor(private http: HttpClient) {
+//     console.log("Persona service is running");
+//   }
+//   getUserAndPass() {
+//     console.log('obtengo datos')
+//     this.http.get('http://localhost:44300/api/login/1433')
+//     .subscribe(Response => {
+//       console.log(Response)
+//       return Response
+//     })
+//   }
+// }
