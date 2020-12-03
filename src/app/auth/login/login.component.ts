@@ -2,7 +2,7 @@ import {FormGroup, FormControl} from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
-import {LoginService} from '../../services/login.service'
+import {LoginService} from '../../services/login.service';
 import { Login } from 'src/app/models/loginModel';
 import { NgForm } from '@angular/forms';
 
@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
   public onLogin(form: NgForm, login: Login){
     console.log('click')
     const {usuario, password} = this.loginForm.value;
-    if (form.invalid)
+    if ("") //form.invalid
     {
       return;
     }
