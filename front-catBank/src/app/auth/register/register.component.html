@@ -21,10 +21,53 @@
                             <div class="invalid-feedback">La contraseña debe tener mínimo 8 caracteres, un número y una
                                 mayúscula.</div>
                         </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" name="email"
+                                class="form-control" formControlName="email" required>
+                            <div class="invalid-feedback">El mail tiene que ser valido</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="Nombre">Nombre</label>
+                            <input type="text" name="Nombre"
+                                class="form-control" formControlName="Nombre" required>
+                            <div class="invalid-feedback">El nombre tiene que ser valido!</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="apellido">Apellido</label>
+                            <input type="text" name="apellido"
+                                class="form-control" formControlName="apellido" required>
+                            <div class="invalid-feedback">El apellido tiene que ser valido!</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="DNI">DNI</label>
+                            <input type="number" name="DNI"
+                                class="form-control" formControlName="DNI" required>
+                            <div class="invalid-feedback">El DNI tiene que ser valido!</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="Pais">Pais</label>
+                            <input type="text" name="Pais"
+                                class="form-control" formControlName="Pais" required>
+                            <div class="invalid-feedback">El Pais tiene que ser valido!</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="Nombre">Localidad</label>
+                            <input type="text" name="Localidad"
+                                class="form-control" formControlName="Localidad" required>
+                            <div class="invalid-feedback">La Localidad tiene que ser valida!</div>
+                        </div>
+                        <div class="form-group">
+                                <label for="Nombre">Telefono</label>
+                                <input type="text" name="Telefono"
+                                    class="form-control" formControlName="Telefono" required>
+                                <div class="invalid-feedback">El Telefono tiene que ser valido!</div>
+                            </div>
+                        
                         <button type="submit" class="btn btn-primary btn-lg">Aceptar</button>
                     </form>
                     <div class="form-group">
-                        <p>¿Tenés una cuenta?<a class="login-link" [routerLink]="['api/login/']">Inicia sesión</a></p>
+                        <p>¿Tenés una cuenta?<a class="login-link" href="api/login/">Inicia sesión</a></p>
                     </div>
                 </div>
             </div>
