@@ -10,12 +10,14 @@ import {AngularFireAuthModule} from '@angular/fire/auth';
 import { FooterComponent } from './shared/footer/footer.component';
 import {HttpClientModule,HTTP_INTERCEPTORS} from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { TransaccionesComponent } from './transacciones/transacciones.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    TransaccionesComponent
   ],
   imports: [
     BrowserModule,
