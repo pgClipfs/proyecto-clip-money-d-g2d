@@ -169,14 +169,22 @@
                                 <p>50000</p>
                             </div>
                             <div class="text-center mt-3" >
-                                <button type="button" class="btn btn-dark" id="btn_retirar" (click)= "ingresarMonto()">Retirar dinero</button>
-                                <button type="button" class="btn btn-dark" id="btn_ingresar" (click)= "ingresarMonto()">Ingresar dinero</button>
+                                <button type="button" class="btn btn-dark" id="btn_retirar" (click)= "verIngresarMonto()">Retirar dinero</button>
+                                <button type="button" class="btn btn-dark" id="btn_ingresar" (click)= "verRetirarMonto()">Ingresar dinero</button>
                             </div>
 
                             <div class="noVisible mt-5" id="ingresar_monto">
-                                <p>Ingresar monto</p>
+                                <p>Coloque el monto a ingresar</p>
                                 <input type="number" id="" name="">
-                                <button id="btn_aceptar" type="button" class="btn btn-dark" (click)= "aceptarMonto()">Aceptar</button>
+                                <button id="btn_aceptar" type="button" class="btn btn-dark" (click)= "ingresarAceptarMonto()">Aceptar</button>
+                                <button type="button" class="btn btn-dark" (click)= "ingresarAceptarMonto()">Cancelar</button>
+                            </div>
+
+                            <div class="noVisible mt-5" id="ingresar_monto_retirar">
+                                <p>Coloque el monto a retirar</p>
+                                <input type="number" id="" name="">
+                                <button id="btn_aceptar" type="button" class="btn btn-dark" (click)= "retirarAceptarMonto()">Aceptar</button>
+                                <button type="button" class="btn btn-dark" (click)= "retirarAceptarMonto()">Cancelar</button>
                             </div>
 
                         </div>
