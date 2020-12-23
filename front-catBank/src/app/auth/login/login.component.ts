@@ -43,7 +43,6 @@ export class LoginComponent implements OnInit {
     }
     else
     {
-      console.log('funca')
       this.loginService.userLogin(login).subscribe(resp =>{
         localStorage.setItem('token', resp);
         this.router.navigate(['/home'])
