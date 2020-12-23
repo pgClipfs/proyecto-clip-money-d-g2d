@@ -165,18 +165,18 @@
                         </div>
                         <div class="col-md-5">
                             <div class="text-center" id="saldo_disponible">
-                                <p><b>SALDO DISPONIBLE</b></p>
+                                <p><b>SALDO ACTUAL</b></p>
                                 <p>50000</p>
                             </div>
-                            <div class="text-center mt-3">
-                                <button type="button" class="btn btn-dark">Retirar dinero</button>
-                                <button type="button" class="btn btn-dark">Ingresar dinero</button>
+                            <div class="text-center mt-3" >
+                                <button type="button" class="btn btn-dark" id="btn_retirar" (click)= "ingresarMonto()">Retirar dinero</button>
+                                <button type="button" class="btn btn-dark" id="btn_ingresar" (click)= "ingresarMonto()">Ingresar dinero</button>
                             </div>
 
-                            <div class="mt-5">
+                            <div class="noVisible mt-5" id="ingresar_monto">
                                 <p>Ingresar monto</p>
                                 <input type="number" id="" name="">
-                                <button id="btn_aceptar" type="button" class="btn btn-dark">Aceptar</button>
+                                <button id="btn_aceptar" type="button" class="btn btn-dark" (click)= "aceptarMonto()">Aceptar</button>
                             </div>
 
                         </div>

@@ -12,4 +12,17 @@ export class TransaccionesComponent implements OnInit {
   ngOnInit(): void {
   }
 
+
+  public aceptarMonto() {
+    var ingresarMont = document.getElementById('ingresar_monto')
+    ingresarMont.classList.add("noVisible");
+  }
+
+  public ingresarMonto() {
+    var ingresarMont = document.getElementById('ingresar_monto')
+    ingresarMont.classList.remove("noVisible");
+  }
+
+
+
 }
