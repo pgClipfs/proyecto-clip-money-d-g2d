@@ -21,6 +21,7 @@ const routes: Routes = [
     loadChildren: () =>
       import('./auth/register/register.module').then((m) => m.RegisterModule),
   },
+  
 ];
 
 @NgModule({
