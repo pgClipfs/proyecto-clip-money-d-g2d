@@ -1,8 +1,7 @@
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {AuthService} from './../services/auth.service'
-
+import {HttpClientModule,HTTP_INTERCEPTORS} from '@angular/common/http';
 import { RegisterRoutingModule } from './register-routing.module';
 import { RegisterComponent } from './register.component';
 
@@ -11,7 +10,8 @@ import { RegisterComponent } from './register.component';
   imports: [
     CommonModule,
     RegisterRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ]
 })
 export class RegisterModule { }

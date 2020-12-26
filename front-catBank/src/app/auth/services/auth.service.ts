@@ -8,10 +8,10 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 export class AuthService {
   constructor(public afAuth: AngularFireAuth) { }
 
-  async login(email:string, password: string) {
+  async login(usuario:string, password: string) {
     try {
       const RESULT = await this.afAuth.signInWithEmailAndPassword(
-        email, 
+        usuario, 
         password
         );
         return RESULT;

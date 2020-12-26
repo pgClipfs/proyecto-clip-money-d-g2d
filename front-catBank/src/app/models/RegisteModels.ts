@@ -1,11 +1,12 @@
 export class Register {
-    Username: string;
-    Password: string;
-    Email: string;
     Nombre: string;
     Apellido: string;
-    Dni: number;
+    Dni: string;
     Pais: string;
     Localidad: string;
+    Mail: string;
     Telefono: string;
+    Pass: string;
+    Usuario: string;
+    
 }

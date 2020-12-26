@@ -7,71 +7,94 @@
                 <div class="card-body">
                     <h2 class="text-center">REGISTRATE</h2>
 
-                    <form [formGroup]="registerForm" (ngSubmit)="onRegister()" class="needs-validation form_container">
+                    <form [formGroup]="registerForm" #formulario="ngForm" class="needs-validation form_container">
                         <div class="row" id="registro">
                             <div class="col-md-6 mx-auto">
                                 <div class="form-group">
-                                    <label for="email">Usuario</label>
+                                    <label for="Nombre">Nombre</label>
+                                    <input type="text" name="Nombre" class="form-control" formControlName="Nombre" [(ngModel)]="selectedRegister.Nombre"
+                                        required>
+                                    <div class="invalid-feedback">El nombre tiene que ser valido!</div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="DNI">DNI</label>
+                                    <input type="number" name="DNI" class="form-control" formControlName="Dni" [(ngModel)]="selectedRegister.Dni" required>
+                                    <div class="invalid-feedback">El DNI tiene que ser valido!</div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="Nombre">Localidad</label>
+                                    <input type="text" name="Localidad" class="form-control" formControlName="Localidad" [(ngModel)]="selectedRegister.Localidad"
+                                        required>
+                                    <div class="invalid-feedback">La Localidad tiene que ser valida!</div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="usuario">Usuario</label>
                                     <!-- <input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" name="email"
                                     class="form-control" formControlName="email" required="true"> -->
-                                    <input type="text" class="form-control" name="usuario" required="true">
+                                    <input type="text" class="form-control" name="usuario" formControlName="Usuario" [(ngModel)]="selectedRegister.Usuario" required>
                                     <div class="invalid-feedback">Ingrese un mail válido.</div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" name="email"
+                                        class="form-control" formControlName="Mail" [(ngModel)]="selectedRegister.Mail"required>
+                                    <div class="invalid-feedback">El mail tiene que ser valido</div>
+                                </div>
+                                <!-- <div class="form-group">
+                                    <label for="Nombre">Nombre</label>
+                                    <input type="text" name="Nombre" class="form-control" formControlName="Nombre" [(ngModel)]="selectedRegister.Nombre"
+                                        required>
+                                    <div class="invalid-feedback">El nombre tiene que ser valido!</div>
+                                </div> -->
+                                <!-- <div class="form-group">
+                                    <label for="apellido">Apellido</label>
+                                    <input type="text" name="apellido" class="form-control" formControlName="Apellido" [(ngModel)]="selectedRegister.Apellido"
+                                        required>
+                                    <div class="invalid-feedback">El apellido tiene que ser valido!</div>
+                                </div> -->
+                            </div>
+
+                            <div class="col-md-6 mx-auto">
+                                <!-- <div class="form-group">
+                                    <label for="DNI">DNI</label>
+                                    <input type="number" name="DNI" class="form-control" formControlName="Dni" [(ngModel)]="selectedRegister.Dni" required>
+                                    <div class="invalid-feedback">El DNI tiene que ser valido!</div>
+                                </div> -->
+                                <div class="form-group">
+                                    <label for="apellido">Apellido</label>
+                                    <input type="text" name="apellido" class="form-control" formControlName="Apellido" [(ngModel)]="selectedRegister.Apellido"
+                                        required>
+                                    <div class="invalid-feedback">El apellido tiene que ser valido!</div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="Pais">Pais</label>
+                                    <input type="text" name="Pais" class="form-control" formControlName="Pais" [(ngModel)]="selectedRegister.Pais" required>
+                                    <div class="invalid-feedback">El Pais tiene que ser valido!</div>
+                                </div>
+                                <!-- <div class="form-group">
+                                    <label for="Nombre">Localidad</label>
+                                    <input type="text" name="Localidad" class="form-control" formControlName="Localidad" [(ngModel)]="selectedRegister.Localidad"
+                                        required>
+                                    <div class="invalid-feedback">La Localidad tiene que ser valida!</div>
+                                </div> -->
+                                <div class="form-group">
+                                    <label for="Nombre">Telefono</label>
+                                    <input type="text" name="Telefono" class="form-control" formControlName="Telefono" [(ngModel)]="selectedRegister.Telefono"
+                                        required>
+                                    <div class="invalid-feedback">El Telefono tiene que ser valido!</div>
                                 </div>
                                 <div class="form-group">
                                     <label for="pass">Contraseña</label>
                                     <input type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" name="pass"
-                                        class="form-control" formControlName="password" required>
+                                        class="form-control" formControlName="Pass" [(ngModel)]="selectedRegister.Pass" required>
                                     <div class="invalid-feedback">La contraseña debe tener mínimo 8 caracteres, un
                                         número y
                                         una
                                         mayúscula.</div>
                                 </div>
-                                <div class="form-group">
-                                    <label for="email">Email</label>
-                                    <input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" name="email"
-                                        class="form-control" formControlName="email" required>
-                                    <div class="invalid-feedback">El mail tiene que ser valido</div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="Nombre">Nombre</label>
-                                    <input type="text" name="Nombre" class="form-control" formControlName="Nombre"
-                                        required>
-                                    <div class="invalid-feedback">El nombre tiene que ser valido!</div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="apellido">Apellido</label>
-                                    <input type="text" name="apellido" class="form-control" formControlName="apellido"
-                                        required>
-                                    <div class="invalid-feedback">El apellido tiene que ser valido!</div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-6 mx-auto">
-                                <div class="form-group">
-                                    <label for="DNI">DNI</label>
-                                    <input type="number" name="DNI" class="form-control" formControlName="DNI" required>
-                                    <div class="invalid-feedback">El DNI tiene que ser valido!</div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="Pais">Pais</label>
-                                    <input type="text" name="Pais" class="form-control" formControlName="Pais" required>
-                                    <div class="invalid-feedback">El Pais tiene que ser valido!</div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="Nombre">Localidad</label>
-                                    <input type="text" name="Localidad" class="form-control" formControlName="Localidad"
-                                        required>
-                                    <div class="invalid-feedback">La Localidad tiene que ser valida!</div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="Nombre">Telefono</label>
-                                    <input type="text" name="Telefono" class="form-control" formControlName="Telefono"
-                                        required>
-                                    <div class="invalid-feedback">El Telefono tiene que ser valido!</div>
-                                </div>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary btn-lg">Aceptar</button>
+                        <button type="submit" class="btn btn-primary btn-lg" (click)= "onRegister(formulario, selectedRegister)">Aceptar</button>
                     </form>
                     <div class="form-group">
                         <p>¿Tenés una cuenta?<a class="login-link" href="api/login/">Inicia sesión</a></p>

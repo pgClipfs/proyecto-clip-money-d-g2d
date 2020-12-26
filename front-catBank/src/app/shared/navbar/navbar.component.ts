@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/auth/services/auth.service';
+import {LoginService} from '../../services/login.service';
 
 @Component({
   selector: 'app-navbar',
@@ -11,16 +12,15 @@ import { AuthService } from 'src/app/auth/services/auth.service';
 })
 export class NavbarComponent{
   public user$: Observable<any> = this.authSvc.afAuth.user;
-  constructor(private authSvc: AuthService, private router: Router) { }
+  constructor(private authSvc: AuthService, public _authService: LoginService, private router: Router) { }
 
   onToggle(){
-    console.log('oculto menu')
     const navItems = document.querySelector('.navbar-collapse')
     navItems.classList.toggle('ocultar_menu')
   }
   async onLogout(){
     try {
-      await this.authSvc.logout();
+      localStorage.removeItem('token');
       this.router.navigate(['/login'])
     } catch (error) {
       console.log(error)
