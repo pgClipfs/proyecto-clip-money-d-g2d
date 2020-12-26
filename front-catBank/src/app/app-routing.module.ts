@@ -21,6 +21,7 @@ const routes: Routes = [
     loadChildren: () =>
       import('./auth/register/register.module').then((m) => m.RegisterModule),
   },
+  { path: 'transactions', loadChildren: () => import('./transactions/transactions.module').then(m => m.TransactionsModule) },
   
 ];
 
