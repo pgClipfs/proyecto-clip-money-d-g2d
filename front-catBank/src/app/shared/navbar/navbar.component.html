@@ -16,8 +16,14 @@
     </ul>
     <div>
       <ul class="navbar-nav mx-auto" id="login-items">
+        
+        
         <li class="nav-item">
           <a class="nav-link" routerLink="/transactions">Transacciones
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/miCuenta">Mi cuenta
           </a>
         </li>
         <li class="nav-item" *ngIf="!_authService.loggedIn()">
