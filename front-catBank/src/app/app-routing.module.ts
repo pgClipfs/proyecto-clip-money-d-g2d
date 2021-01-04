@@ -22,6 +22,7 @@ const routes: Routes = [
       import('./auth/register/register.module').then((m) => m.RegisterModule),
   },
   { path: 'transactions', loadChildren: () => import('./transactions/transactions.module').then(m => m.TransactionsModule) },
+  { path: 'miCuenta', loadChildren: () => import('./mi-cuenta/mi-cuenta.module').then(m => m.MiCuentaModule) },
   
 ];
 
