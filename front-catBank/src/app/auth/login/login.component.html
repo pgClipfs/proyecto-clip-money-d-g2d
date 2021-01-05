@@ -15,7 +15,7 @@
                         <div class="form-group">
                             <label for="pass">Contraseña</label>
                             <input type="password" pattern= "(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" name="pass" class="form-control" formControlName="password" [(ngModel)]="selectedLogin.Password" required>
-                            <p><a href="#">Olvidé mi contraseña</a></p>
+                            <button type="button" class="btn btn-link" (click) ="Modal()">¿Olvidaste tu contraseña?</button> 
                         </div>
                         <p class="text-danger error_message"></p>
                         <button type="submit"class="btn btn-primary btn-lg" (click)= "onLogin(formulario, selectedLogin)" >Ingresar</button>
@@ -25,6 +25,22 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="row">
+        <div id="modal_popup">
+            <div class="card text-white bg-dark mb-3 sendMail" >
+                <div class="card-header"><div class="close-btn">+</div>Ingrese el mail de su cuenta</div>
+                <div class="card-body">
+                    <form [formGroup]="mailForm" class="form_container" #formulario="ngForm">
+                        <div class="form-group">
+                            <label for="email">Mail:</label>
+                            <input type="email" formControlName="mail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" name="email" class="form-control" [(ngModel)]="selectedMail.Mail" required> 
+                        </div>
+                        <button type="button" class="btn btn-primary" (click)= "checkMail(formulario, selectedMail)">Aceptar</button>
+                    </form>
+                </div>
+              </div>
         </div>
     </div>
 </div>

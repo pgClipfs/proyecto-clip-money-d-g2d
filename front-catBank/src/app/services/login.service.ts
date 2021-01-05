@@ -3,13 +3,14 @@ import { Login } from '../models/loginModel';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { Mail } from '../models/mailModel';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
-  url = 'https://localhost:44300/api/login/authenticate';
+  url = 'https://localhost:44300/api';
 
   constructor( private http: HttpClient, private _router: Router) {
     console.log('Auth Service Running');
@@ -22,7 +23,12 @@ export class LoginService {
     document.querySelector('#UsernameTag').classList.add("nav-link")
    
      let header = new HttpHeaders().set('Content-Type', 'aplication/json');
-     return this.http.post<string>(this.url, login);
+     return this.http.post<string>(this.url+'/login/authenticate', login);
+  }
+
+  sendMail(mail: Mail): Observable<string>{
+    let header = new HttpHeaders().set('Content-Type', 'aplication/json');
+     return this.http.post<string>(this.url+'/startReset/startRecovery', mail);
   }
 
 
