@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import {LoginService} from '../../services/login.service';
 import { Login } from 'src/app/models/loginModel';
 import { NgForm } from '@angular/forms';
+import { Mail } from 'src/app/models/mailModel';
 
 
 
@@ -22,6 +23,12 @@ export class LoginComponent implements OnInit {
   loginForm= new FormGroup({
     usuario: new FormControl(''),
     password: new FormControl('')
+  })
+  public mail: Mail[];
+  selectedMail: Mail = new Mail();
+  mailForm= new FormGroup({
+    mail: new FormControl('')
+    
   })
   constructor(private authSvc: AuthService,private loginService: LoginService, private router: Router) { 
     // const login = new Login()
@@ -53,28 +60,32 @@ export class LoginComponent implements OnInit {
       });
     }
     console.log(this.selectedLogin);
-    // try {
-    //   const user = this.authSvc.login(email, password);
-    //   //const user =  this.http.post('http://localhost:44300/api/login/authenticate', {email: email, password: password} )
-     
-    //   // const user =  this.http.get('http://tlp.news/' )
-    //   // console.log('holis')
-    //   // console.log(this.http.get('http://tlp.news/' ))
-    //   // if (user) {
-    //   //   // this.router.navigate(['/home'])
-    //   //   console.log('holaa')
-    //   // }
-    //   this.loginService.userLogin(login).subscribe(resp =>{
-    //     localStorage.setItem('token', resp);
-    //     this.router.navigateByUrl('/micuenta');
-    //     console.log(resp);
-    // } 
-    // catch (error) {
-    //   console.log(error)
-    // }
+  }
+
+  public checkMail(form: NgForm, mail: Mail) {
+    console.log(this.selectedMail)
+    console.log(mail)
+    this.loginService.sendMail(mail).subscribe(resp =>{
+      
+      this.router.navigate(['/home'])
+      console.log(resp)
+    },
+    err =>{
+      if(err.status == 401) alert("Compruebe su email o contraseña...")
+    });
+  }
+
+  public Modal(){
+      let mailInput= document.getElementById("modal_popup")
+      console.log(mailInput)
+      mailInput.style.display = "flex"
+      document.querySelector('.close-btn').addEventListener('click', ()=> {
+      mailInput.style.display = "none"
+    })
   }
 
 }
+
 
 (function () {
   'use strict';

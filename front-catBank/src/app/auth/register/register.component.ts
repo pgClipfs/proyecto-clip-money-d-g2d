@@ -51,7 +51,7 @@ export class RegisterComponent implements OnInit {
   public onRegister(form: NgForm, register: Register){
     console.log('click')
     const {usuario, password} = this.registerForm.value;
-    if ("") //form.invalid
+    if (form.invalid) //form.invalid
     {
       return;
     }
