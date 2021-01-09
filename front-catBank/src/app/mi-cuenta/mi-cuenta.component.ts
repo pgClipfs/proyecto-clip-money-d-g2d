@@ -12,4 +12,24 @@ export class MiCuentaComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  public editarPais(){
+    let editarInput = document.getElementById('inputPais')
+    let editarButton = document.getElementById('btnPais')
+    let aceptarButton = document.getElementById('aceptarPais')
+
+    editarButton.classList.add("noVisible");
+    aceptarButton.classList.remove("noVisible");    
+    editarInput.textContent = " ";
+  }
+
+  public aceptarValorPais() {
+    let editarInput = document.getElementById('inputPais')
+    let editarButton = document.getElementById('btnPais')
+    let aceptarButton = document.getElementById('aceptarPais')
+
+    editarButton.classList.remove("noVisible");
+    aceptarButton.classList.add("noVisible");
+    editarInput.innerText = editarInput.textContent; 
+  }
+
 }
