@@ -21,16 +21,6 @@ const routes: Routes = [
     loadChildren: () =>
       import('./auth/register/register.module').then((m) => m.RegisterModule),
   },
-  {
-    path: '',
-    redirectTo:'/transacciones',
-    pathMatch:'full'
-  },
-  {
-    path: 'transacciones',
-    loadChildren: () =>
-      import('./transacciones/transacciones.module').then((t) => t.TransaccionesModule),
-  },
 ];
 
 @NgModule({
