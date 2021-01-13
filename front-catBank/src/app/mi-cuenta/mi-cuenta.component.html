@@ -1,3 +1,7 @@
+
+
+
+
 <div class="div"> 
     <form >
         
@@ -45,29 +49,33 @@
                 <div >
                     <input class="btn" type="button" id="btnPais" value="editar" (click)= "editarPais()">
                     <input class="btn noVisible" type="button" id="aceptarPais" value="aceptar" (click)= "aceptarValorPais()">                     
-                    <input type="text" id="inputPais" placeholder="funciona">
+                    <input type="text" id="inputPais" placeholder="Argentina" [disabled] = "disabledBtn">
                 </div>
             </div>
             <div class="form-line-wrapper">
                 <label for="ciudad">Ciudad</label>
                 <div >
-                    <input type="button" id="input" value="editar">
-                    <input type="text" id="inputCiudad" ciudad="ciudad" placeholder="Rio Cuarto" readonly>
+                    <input class="btn" type="button" id="btnCiudad" value="editar" (click)= "editarCiudad()">
+                    <input class="btn noVisible" type="button" id="aceptarCiudad" value="aceptar" (click)= "aceptarValorCiudad()">
+                    <input type="text" id="inputCiudad" ciudad="ciudad" placeholder="Rio Cuarto" [disabled] = "disabledBtnCiudad">
                 </div>
             </div>
             
             <div class="form-line-wrapper">
                 <label for="E-mail">E‑mail</label>
                 <div >
-                    <input type="button" id="input" value="editar">
-                    <input type="email" id="inputMail" E-mail="E-mail" placeholder="Robert@gmail.com" readonly>
+                    <input class="btn" type="button" id="btnMail" value="editar" (click)= "editarMail()">
+                    <input class="btn noVisible" type="button" id="aceptarMail" value="aceptar" (click)= "aceptarValorMail()">
+                    <input type="email" id="inputMail" E-mail="E-mail" placeholder="Robert@gmail.com" [disabled] = "disabledBtnMail">
                 </div>
             </div>
+            
             <div class="form-line-wrapper">
                 <label for="telefono">Telefono</label>
                 <div>
-                    <input type="button" id="input" value="editar">
-                    <input type="number" id="inputTeleono" telefono="telefono" placeholder="0358 15489657" readonly >
+                    <input class="btn" type="button" id="btnTelefono" value="editar" (click)= "editarTelefono()">
+                    <input class="btn noVisible" type="button" id="aceptarTelefono" value="aceptar" (click)= "aceptarValorTelefono()">  
+                    <input type="number" id="inputTelefono" telefono="telefono" placeholder="0358 15489657" [disabled] = "disabledBtnTelefono">
                 </div>
             </div>
             
@@ -76,13 +84,13 @@
             <div class="form-subsection">
                 <h5 class="form-subsection-title">ACTIVAR CUENTA</h5>
             <div>
-                <label class="form-line-wrapper">subir foto dni (frontal)</label>
+                <label class="form-line-wrapper">Subir foto dni (frontal)</label>
+                <input class="subirFoto" type="file"  id="file">
+                <br><br>
+                <label class="form-line-wrapper">Subir foto dni (dorsal)</label>
                 <input type="file"  id="file">
                 <br><br>
-                <label class="form-line-wrapper">subir foto dni (dorsal)</label>
-                <input type="file"  id="file">
-                <br><br>
-                <input type="submit"  value="Enviar">
+                <input class="btn activar" type="submit"  value="Enviar">
                 
             </div> 
             </div>  
