@@ -12,39 +12,16 @@ export class TransaccionesComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  //Hace visible el input para ingresar dinero 
 
-  public verIngresarMonto() {
+  public aceptarMonto() {
+    var ingresarMont = document.getElementById('ingresar_monto')
+    ingresarMont.classList.add("noVisible");
+  }
+
+  public ingresarMonto() {
     var ingresarMont = document.getElementById('ingresar_monto')
     ingresarMont.classList.remove("noVisible");
-    var ingresarMont = document.getElementById('ingresar_monto_retirar')
-    ingresarMont.classList.add("noVisible");
   }
-
-  //Hace visible el input para retirar dinero 
-
-  public verRetirarMonto() {
-    var ingresarMont = document.getElementById('ingresar_monto_retirar')
-    ingresarMont.classList.remove("noVisible");
-    var ingresarMont = document.getElementById('ingresar_monto')
-    ingresarMont.classList.add("noVisible");
-  }
-
-  //Acepta el monto ingresado   
-
-  public ingresarAceptarMonto() {
-    var ingresarMont = document.getElementById('ingresar_monto')
-    ingresarMont.classList.add("noVisible");
-  }
-
-  //Acepta el monto a retirar   
-
-  public retirarAceptarMonto() {
-    var ingresarMont = document.getElementById('ingresar_monto_retirar')
-    ingresarMont.classList.add("noVisible");
-  }
-
-
 
 
 
