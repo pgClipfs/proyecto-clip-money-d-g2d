@@ -18,18 +18,18 @@ export class MiCuentaComponent implements OnInit {
   }
 
   public editarPais() {
-    let editarInput = document.getElementById('inputPais')
+    //let editarInput = document.getElementById('inputPais')
     let editarButton = document.getElementById('btnPais')
     let aceptarButton = document.getElementById('aceptarPais')
 
     editarButton.classList.add("noVisible");
     aceptarButton.classList.remove("noVisible");
-    editarInput.innerHTML = "hola"
-    console.log(editarInput)
+    //editarInput.innerHTML = "hola"
+    //console.log(editarInput)
   }
 
   public aceptarValorPais() {
-    let editarInput = document.getElementById('inputPais')
+    //let editarInput = document.getElementById('inputPais')
     let editarButton = document.getElementById('btnPais')
     let aceptarButton = document.getElementById('aceptarPais')
 
