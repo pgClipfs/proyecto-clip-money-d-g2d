@@ -23,6 +23,7 @@ export class LoginService {
     document.querySelector('#UsernameTag').classList.add("nav-link")
    
      let header = new HttpHeaders().set('Content-Type', 'aplication/json');
+     console.log(header)
      return this.http.post<string>(this.url+'/login/authenticate', login);
   }
 
