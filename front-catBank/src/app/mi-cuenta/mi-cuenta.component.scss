@@ -1,0 +1,61 @@
+
+
+.form-subsection-title{
+    text-align: center;
+    background-color: #221b1b2f ;
+    color:#aaa;
+    font-size: 2em;
+    font-family: "Segoe UI";
+    
+}
+
+.form-line-wrapper{
+    margin: 0;
+    background-color: #32383e;
+}
+.form-subsection{
+    background-color:  #32383e;
+    color: #aaa;
+    font-family: 'calibri';
+}
+
+.form-line-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0 0 15px;
+    color: #aaa;
+    border-radius: 5px;
+}
+
+
+
+fieldset {
+    min-width: 0 ;
+    padding: 30px;
+    margin: 100px 0px;
+    border: 1px solid rgba(0, 0, 0, 0.6);
+    background-color: #32383e;
+    border-radius: 0.25rem;
+}
+
+#input {
+    background-color:#32383e9f;
+    color:rgb(126, 107, 107);
+    font-family: 'calibri';
+    border: 0;
+    outline: none;
+    
+    
+}
+
+#file{
+    margin: 0;
+    padding: 0;
+    font-size: small;
+}
+#titulo_transacciones {
+    font-size: 2em;
+    text-align: center;
+    background-color:rgb(3, 3, 3) ;
+}
