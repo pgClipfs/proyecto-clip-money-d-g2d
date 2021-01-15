@@ -1,3 +1,5 @@
+
+
 #saldo_disponible {
     background-color: #221b1b2f;
     width: 100%;
@@ -5,6 +7,10 @@
     padding: 3%;
     font-weight: 500;  
     font-size: 1.2em;
+    
+}
+#saldo_disponible_p {
+    color: rgb(224, 221, 221);
 }
 
 #titulo_transacciones {
@@ -12,7 +18,7 @@
 }
 
 .card{
-    margin: 5% 0 15% 0;
+    margin: 5% 0 25% 0;
 }
 
 .btn {
@@ -47,12 +53,24 @@
     margin-bottom: 1em;
     font-weight: 500;  
     font-size: 1.2em;
+    color: rgb(224, 221, 221);
 }
 
 .datos_cuenta {
     margin-bottom: 1.5em;
+    border-color:  #221b1b;
 }
 
 .ultimas_transacciones {
     margin-bottom: 2em;
+}
+.ultimas_transacciones_p {
+    font-weight: 500;  
+    font-size: 1.3em;
+}
+
+.titulos_t {
+    font-weight: 500;  
+    font-size: 1.1em;  
+    color: rgb(224, 221, 221);   
 }
