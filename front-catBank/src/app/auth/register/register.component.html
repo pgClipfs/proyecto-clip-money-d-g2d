@@ -94,11 +94,15 @@
                                 </div>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary btn-lg" (click)= "onRegister(formulario, selectedRegister)">Aceptar</button>
+                        <div class="ml-3">
+                            <button type="submit" class="btn btn-primary btn-lg mb-3" (click)= "onRegister(formulario, selectedRegister)">Aceptar</button>
+                            <div class="form-group">
+                                <p>¿Tenés una cuenta?<a class="login-link" href="api/login/">Inicia sesión</a></p>
+                            </div>
+                        </div>
+
                     </form>
-                    <div class="form-group">
-                        <p>¿Tenés una cuenta?<a class="login-link" href="api/login/">Inicia sesión</a></p>
-                    </div>
+
                 </div>
             </div>
         </div>
