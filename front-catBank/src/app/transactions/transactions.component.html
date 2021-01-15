@@ -5,7 +5,7 @@
                 <h5 class="text-center" id="titulo_transacciones">TRANSACCIONES</h5>
                 <div>
                     <form class="form-inline align-items-start mt-5">
-                        <div class="col-md-7">
+                        <div class="col-md-7 ultimas_transacciones">
                             <p>Últimas transacciones</p>
                             <div>
                                 <div class="d-flex flex-row">
@@ -164,38 +164,76 @@
 
                         </div>
                         <div class="col-md-5">
-                            <div class="text-center" id="saldo_disponible">
-                                <p><b>SALDO ACTUAL</b></p>
-                                <p>50000</p>
-                            </div>
-                            <div class="text-center mt-3" >
-                                <button type="button" class="btn btn-dark" id="btn_ingresar" (click)= "verRetirarMonto()">Ingresar dinero</button>
-                                <button type="button" class="btn btn-dark" id="btn_retirar" (click)= "verIngresarMonto()">Retirar dinero</button>
-                            </div>
-
-                            <div class="montos">
-                                <div class="noVisible text-center mt-5" id="ingresar_monto">
-                                    <div>
-                                        <p>Coloque el monto a ingresar</p>
-                                        <input type="number" id="" name="">
+                            <div class="datos_cuenta">
+                                <div class="text-center">
+                                    <p id="datos_cuenta"><b>DATOS DE LA CUENTA</b></p>                                    
+                                </div>
+                                <div>
+                                    <div class="d-flex flex-row">
+                                        <div class="col-md-6 text-left">
+                                            <p>CBU</p>
+                                        </div>
+                                        <div class="col-md-6 text-right">
+                                            <p>12345678912</p>
+                                        </div>                                        
                                     </div>
-                                    <div>
-                                        <button type="button" class="btn monto btn-dark" (click)= "ingresarAceptarMonto()">Aceptar</button>
-                                        <button type="button" class="btn monto btn-dark" (click)= "ingresarAceptarMonto()">Cancelar</button>
+                                </div>
+                                <div>
+                                    <div class="d-flex flex-row">
+                                        <div class="col-md-6 text-left">
+                                            <p>CVU</p>
+                                        </div>
+                                        <div class="col-md-6 text-right">
+                                            <p>12345678912</p>
+                                        </div>                                        
                                     </div>
+                                </div>
+                                <div>
+                                    <div class="d-flex flex-row">
+                                        <div class="col-md-6 text-left">
+                                            <p>ALIAS</p>
+                                        </div>
+                                        <div class="col-md-6 text-right">
+                                            <p>MAR-ARENA-SOL</p>
+                                        </div>                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="text-center" id="saldo_disponible">
+                                    <p><b>SALDO ACTUAL</b></p>
+                                    <p>50000</p>
+                                </div>
+                                <div class="text-center mt-3" >
+                                    <button type="button" class="btn btn-dark" id="btn_ingresar" (click)= "verRetirarMonto()">Ingresar dinero</button>
+                                    <button type="button" class="btn btn-dark" id="btn_retirar" (click)= "verIngresarMonto()">Retirar dinero</button>
                                 </div>
     
-                                <div class="noVisible text-center mt-5" id="ingresar_monto_retirar">
-                                    <div>
-                                        <p>Coloque el monto a retirar</p>
-                                        <input type="number" id="" name="">
+                                <div class="montos">
+                                    <div class="noVisible text-center mt-5" id="ingresar_monto">
+                                        <div>
+                                            <p>Coloque el monto a ingresar</p>
+                                            <input type="number" id="" name="">
+                                        </div>
+                                        <div>
+                                            <button type="button" class="btn monto btn-dark" (click)= "ingresarAceptarMonto()">Aceptar</button>
+                                            <button type="button" class="btn monto btn-dark" (click)= "ingresarAceptarMonto()">Cancelar</button>
+                                        </div>
                                     </div>
-                                    <div>
-                                        <button type="button" class="btn monto btn-dark" (click)= "retirarAceptarMonto()">Aceptar</button>
-                                        <button type="button" class="btn monto btn-dark" (click)= "retirarAceptarMonto()">Cancelar</button>
+        
+                                    <div class="noVisible text-center mt-5" id="ingresar_monto_retirar">
+                                        <div>
+                                            <p>Coloque el monto a retirar</p>
+                                            <input type="number" id="" name="">
+                                        </div>
+                                        <div>
+                                            <button type="button" class="btn monto btn-dark" (click)= "retirarAceptarMonto()">Aceptar</button>
+                                            <button type="button" class="btn monto btn-dark" (click)= "retirarAceptarMonto()">Cancelar</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+
 
                         </div>
                     </form>
