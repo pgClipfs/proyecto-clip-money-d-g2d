@@ -4,13 +4,23 @@ using System.Linq;
 using System.Web;
 using System.Data.SqlClient;
 using System.Configuration;
-
+using System.Security.Claims;
 
 namespace AngularMVCProject.Models
 {
     public class GestorPersonas
     {
-       
+        public bool getUserByUsername(Token token, string claims)
+        {
+
+            if (token != null)
+            {
+                return true;
+            } else
+            {
+                return false;
+            }
+        }
         public int AgregarPersona(Persona nueva)
         {
             //string StrConn = ConfigurationManager.ConnectionStrings["dbHomeBank"].ToString();
@@ -35,8 +45,8 @@ namespace AngularMVCProject.Models
                     comm.Parameters.Add(new SqlParameter("@Localidad", nueva.Localidad));
                     comm.Parameters.Add(new SqlParameter("@Mail", nueva.Mail));
                     comm.Parameters.Add(new SqlParameter("@Telefono", nueva.Telefono));
-                    comm.Parameters.Add(new SqlParameter("@Pass", nueva.Pass));
                     comm.Parameters.Add(new SqlParameter("@Usuario", nueva.Usuario));
+                    comm.Parameters.Add(new SqlParameter("@Pass", nueva.Pass));
 
 
                     id = Convert.ToInt32(comm.ExecuteScalar());
@@ -52,8 +62,9 @@ namespace AngularMVCProject.Models
         public List<Persona> ObtenerPersonas()
         {
             List<Persona> lista = new List<Persona>();
-            string strConn = "Server=AR-IT02462\\SQLEXPRESS01,1433;Database=dbHomeBank;User Id=mari;Password=Login1234;";
-        
+            //string strConn = "Server=AR-IT02462\\SQLEXPRESS01,1433;Database=dbHomeBank;User Id=mari;Password=Login1234;";
+            string strConn = "Data Source=AR-IT02462\\SQLEXPRESS01;Initial Catalog=dbHomeBank;Integrated Security=True";
+
 
             using (SqlConnection conn = new SqlConnection(strConn))
 
@@ -76,8 +87,8 @@ namespace AngularMVCProject.Models
                         string localidad = dr.GetString(4).Trim();
                         string mail = dr.GetString(5).Trim();
                         string telefono = dr.GetString(6).Trim();
-                        string pass = dr.GetString(7).Trim();
                         string usuario = dr.GetString(8).Trim();
+                        string pass = dr.GetString(7).Trim();
 
                     Persona p = new Persona(id, nombre, apellido, pais, localidad, mail, telefono, pass, usuario, dni);
                     lista.Add(p);
@@ -105,7 +116,7 @@ namespace AngularMVCProject.Models
             }
 
         }
-
+        
         public Persona ObtenerPorId(int id)
         {
             Persona p = null;
@@ -142,25 +153,53 @@ namespace AngularMVCProject.Models
 
         }
 
-        public void ModificarPersona(Persona p)
+        public void ModificarPersona(DatosAModificar modificar)
         {
-            string StrConn = ConfigurationManager.ConnectionStrings["BDLocal"].ToString();
+            using( Models.dbHomeBank db= new Models.dbHomeBank()){
+                var oUser = db.Clientes.Where(d => d.idCliente== modificar.Id).FirstOrDefault();
+                if (modificar.Localidad != null)
+                {
+                    oUser.localidad = modificar.Localidad;
+                    db.Entry(oUser).State = System.Data.Entity.EntityState.Modified;
+                    db.SaveChanges();
+                }
+                if (modificar.Pais != null)
+                {
+                    oUser.pais = modificar.Pais;
+                    db.Entry(oUser).State = System.Data.Entity.EntityState.Modified;
+                    db.SaveChanges();
+                }
+                if (modificar.Mail != null)
+                {
+                    oUser.mail = modificar.Mail;
+                    db.Entry(oUser).State = System.Data.Entity.EntityState.Modified;
+                    db.SaveChanges();
+                }
+                if (modificar.Telefono != null)
+                {
+                    oUser.telefono = modificar.Telefono;
+                    db.Entry(oUser).State = System.Data.Entity.EntityState.Modified;
+                    db.SaveChanges();
+                }
 
-            using (SqlConnection conn = new SqlConnection(StrConn))
-            { 
-                conn.Open();
-
-                SqlCommand comm = conn.CreateCommand();
-                comm.CommandText = "modificar_persona";
-                comm.CommandType = System.Data.CommandType.StoredProcedure;
-                comm.Parameters.Add(new SqlParameter("@Nombre", p.Nombre));
-                comm.Parameters.Add(new SqlParameter("@Apellido", p.Apellido));
-                comm.Parameters.Add(new SqlParameter("@Id", p.Id));
-
-                comm.ExecuteNonQuery();
-                
-                
             }
+            //string StrConn = ConfigurationManager.ConnectionStrings["BDLocal"].ToString();
+
+            //using (SqlConnection conn = new SqlConnection(StrConn))
+            //{ 
+            //    conn.Open();
+
+            //    SqlCommand comm = conn.CreateCommand();
+            //    comm.CommandText = "modificar_persona";
+            //    comm.CommandType = System.Data.CommandType.StoredProcedure;
+            //    comm.Parameters.Add(new SqlParameter("@Nombre", p.Nombre));
+            //    comm.Parameters.Add(new SqlParameter("@Apellido", p.Apellido));
+            //    comm.Parameters.Add(new SqlParameter("@Id", p.Id));
+
+            //    comm.ExecuteNonQuery();
+                
+                
+            //}
         }
     }
 }

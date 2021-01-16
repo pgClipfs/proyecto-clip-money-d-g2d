@@ -5,6 +5,7 @@ import {authToken} from 'src/app/models/authToken';
 import { MiCuentaService } from '../services/mi-cuenta.service';
 
 
+
 @Component({
   selector: 'app-mi-cuenta',
   templateUrl: './mi-cuenta.component.html',
@@ -16,8 +17,11 @@ import { MiCuentaService } from '../services/mi-cuenta.service';
 
 export class MiCuentaComponent implements OnInit {
 
-<<<<<<< HEAD
   token = new authToken();
+  disabledBtn: boolean = true
+  disabledBtnTelefono: boolean = true
+  disabledBtnMail: boolean = true 
+  disabledBtnCiudad: boolean = true
   
 
   constructor(private miCuentaService: MiCuentaService,  private router: Router) { }
@@ -33,18 +37,6 @@ export class MiCuentaComponent implements OnInit {
     err =>{
       console.log(err)
     });
-  }
-=======
-  disabledBtn: boolean = true
-  disabledBtnTelefono: boolean = true
-  disabledBtnMail: boolean = true 
-  disabledBtnCiudad: boolean = true
-  
-
-  constructor() { }
-
-  ngOnInit(): void {
-
     
   }
 
@@ -114,5 +106,4 @@ export class MiCuentaComponent implements OnInit {
 
 
 
->>>>>>> cbe8fc2b487171b054a1961aeb67650ebb6978c8
 }

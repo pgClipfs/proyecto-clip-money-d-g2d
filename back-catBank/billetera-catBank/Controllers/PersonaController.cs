@@ -7,6 +7,7 @@ using System.Web.Http;
 using System.Web.Routing;
 using AngularMVCProject.Models;
 using System.Web.Http.Cors;
+using System.Security.Claims;
 
 namespace AngularMVCProject.Controllers
 {
@@ -22,12 +23,46 @@ namespace AngularMVCProject.Controllers
             GestorPersonas gPersona = new GestorPersonas();
             return gPersona.ObtenerPersonas();
         }
-
+        //[Route("user")]
+        //[EnableCors(origins: "*", headers: "*", methods: "*")]
+        //public Persona Get(string token)
+        //{
+        //    GestorPersonas gPersona = new GestorPersonas();
+        //    return gPersona.getUserByUsername(token);
+        //}
+        [HttpGet]
+        [Authorize]
+        [Route("customer")]
         [EnableCors(origins: "*", headers: "*", methods: "*")]
-        public Persona Get(int id)
+        public IHttpActionResult Customer(Token token)
         {
+            if (token == null)
+                throw new HttpResponseException(HttpStatusCode.Unauthorized);
+
+            ClaimsIdentity claimsIdentity = User.Identity as ClaimsIdentity;
+
+            var claims = claimsIdentity.Claims.FirstOrDefault(x => x.Type.Equals(ClaimTypes.Name)).Value;
+
             GestorPersonas gPersona = new GestorPersonas();
-            return gPersona.ObtenerPorId(id);
+            bool getAuth = gPersona.getUserByUsername(token, claims);
+            if (getAuth == true)
+            {
+                using (Models.dbEntityToken db = new Models.dbEntityToken())
+                {
+                    System.Diagnostics.Debug.WriteLine(token.Jwt + "es el token");
+                    System.Diagnostics.Debug.WriteLine(claims);
+                    var oUser = db.Clientes.Where(d => d.usuario == claims).FirstOrDefault();
+                    if (oUser != null)
+                    {
+
+                        System.Diagnostics.Debug.WriteLine(oUser);
+                    }
+                    return Ok(oUser);
+                }
+            } else
+            {
+                return BadRequest();
+            }
         }
 
         // POST: api/Persona
@@ -43,10 +78,10 @@ namespace AngularMVCProject.Controllers
 
         // PUT: api/Persona
         [EnableCors(origins: "*", headers: "*", methods: "*")]
-        public void Put(Persona persona)
+        public void Put(DatosAModificar modificar)
         {
             GestorPersonas gPersona = new GestorPersonas();
-            gPersona.ModificarPersona(persona);
+            gPersona.ModificarPersona(modificar);
 
         }
 
