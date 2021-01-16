@@ -44,12 +44,17 @@ export class LoginComponent implements OnInit {
   public onLogin(form: NgForm, login: Login){
     console.log('click')
     const {usuario, password} = this.loginForm.value;
-    if ("") //form.invalid
+    let msj = document.querySelector('.msj')
+    if (form.invalid) //form.invalid
     {
+      // let msj = document.querySelector('.msj')
+      console.log("a")
+      msj.innerHTML = "contraseña o usuario erroneo"
       return;
     }
     else
     {
+      msj.innerHTML= ""
       this.loginService.userLogin(login).subscribe(resp =>{
         localStorage.setItem('token', resp);
         this.router.navigate(['/home'])
