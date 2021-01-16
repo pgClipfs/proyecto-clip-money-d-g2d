@@ -47,11 +47,10 @@ export class NewPassComponent implements OnInit {
       icon.classList.remove('fa', 'fa-eye')
       icon.classList.add("fa", "fa-eye-slash");
   } else {
-      // Password.type = "text"
-      // pass2.type = "text"
+    typeof Password === "string"
+    typeof pass2 === "string"
       icon.classList.remove('fa', 'fa-eye-slash')
-      icon.classList.add("fa", "fa-eye");
-      
+      icon.classList.add("fa", "fa-eye");      
   }
   }
 
