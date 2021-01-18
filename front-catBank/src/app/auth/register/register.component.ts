@@ -53,6 +53,7 @@ export class RegisterComponent implements OnInit {
     const {usuario, password} = this.registerForm.value;
     if (form.invalid) //form.invalid
     {
+      
       return;
     }
     else

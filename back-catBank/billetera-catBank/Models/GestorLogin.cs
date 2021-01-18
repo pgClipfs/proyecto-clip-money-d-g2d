@@ -12,7 +12,8 @@ namespace AngularMVCProject.Models
         public bool ValidarLogin(LoginRequest ploginRequest)
         {
             //string strConn = ConfigurationManager.ConnectionStrings["BDLocal"].ToString();
-            string strConn = "Server=AR-IT02462\\SQLEXPRESS01;Database=dbHomeBank;User Id=mari;Password=Login1234;";
+            //string strConn = "Server=AR-IT02462\\SQLEXPRESS01;Database=dbHomeBank;User Id=mari;Password=Login1234;";
+            string strConn = "Data Source=AR-IT02462\\SQLEXPRESS01;Initial Catalog=dbHomeBank;Integrated Security=True";
             bool result = false;
 
             using (SqlConnection conn = new SqlConnection(strConn))

@@ -47,6 +47,12 @@
     <Reference Include="Antlr3.Runtime, Version=3.4.1.9004, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
       <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.1.1.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
@@ -80,6 +86,8 @@
     <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.6.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.7.1\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Text.Encodings.Web, Version=4.0.5.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Text.Encodings.Web.4.7.1\lib\net461\System.Text.Encodings.Web.dll</HintPath>
     </Reference>
@@ -168,24 +176,90 @@
     <Content Include="Bundles\styles.js" />
     <Content Include="Bundles\vendor.js" />
     <Content Include="Global.asax" />
+    <Content Include="Models\DB.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DB.edmx</DependentUpon>
+      <LastGenOutput>DB.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\DB.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DB.edmx</DependentUpon>
+      <LastGenOutput>DB.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\dbEntity.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>dbEntity.edmx</DependentUpon>
+      <LastGenOutput>dbEntity.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\dbEntity.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>dbEntity.edmx</DependentUpon>
+      <LastGenOutput>dbEntity.cs</LastGenOutput>
+    </Content>
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\CuentaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\PersonaController.cs" />
+    <Compile Include="Controllers\ResetPassController.cs" />
     <Compile Include="Controllers\TokenGenerator.cs" />
     <Compile Include="Controllers\TokenValidationHandler.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\activarCuenta.cs" />
+    <Compile Include="Models\Clientes.cs">
+      <DependentUpon>dbEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Cuentas.cs">
+      <DependentUpon>dbEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DatosAModificar.cs" />
+    <Compile Include="Models\datosCuenta.cs" />
+    <Compile Include="Models\DB.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DB.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DB.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\dbEntity.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dbEntity.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\dbEntity.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dbEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\dbEntity.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dbEntity.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\gestorCuenta.cs" />
     <Compile Include="Models\GestorLogin.cs" />
     <Compile Include="Models\GestorPersona.cs" />
+    <Compile Include="Models\GestorRecovery.cs" />
     <Compile Include="Models\LoginRequest.cs" />
+    <Compile Include="Models\NewPass.cs" />
     <Compile Include="Models\Persona.cs" />
+    <Compile Include="Models\Recovery.cs" />
+    <Compile Include="Models\Token.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -196,6 +270,20 @@
     <Content Include="Bundles\runtime.js.map" />
     <Content Include="Bundles\styles.js.map" />
     <Content Include="Bundles\vendor.js.map" />
+    <EntityDeploy Include="Models\DB.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>DB.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\DB.edmx.diagram">
+      <DependentUpon>DB.edmx</DependentUpon>
+    </Content>
+    <EntityDeploy Include="Models\dbEntity.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>dbEntity.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\dbEntity.edmx.diagram">
+      <DependentUpon>dbEntity.edmx</DependentUpon>
+    </Content>
     <None Include="packages.config" />
     <Content Include="Views\Home\Index.cshtml" />
     <None Include="Web.Debug.config">
@@ -207,6 +295,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

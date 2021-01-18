@@ -17,7 +17,7 @@
                             <input type="password" pattern= "(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" name="pass" class="form-control" formControlName="password" [(ngModel)]="selectedLogin.Password" required>
                             <button type="button" class="btn btn-link" (click) ="Modal()">¿Olvidaste tu contraseña?</button> 
                         </div>
-                        <div class="invalid-feedback">La contraseña es incorrecta</div>
+                        <p class="text-danger error_message msj"></p>
                         <button type="submit"class="btn btn-primary btn-lg" (click)= "onLogin(formulario, selectedLogin)" >Ingresar</button>
                     </form>
                     <div class="form-group">
