@@ -58,9 +58,7 @@ export class NewPassComponent implements OnInit {
     let msje_error = document.querySelector('.error_message')
     this.setValue()
     if(this.selectedPassReset.Password === this.selectedPassReset.Password2) {
-      console.log(this.selectedPassReset)
-      console.log(newPass)
-      console.log(this.rutaActiva.snapshot.params)
+     
       msje_error.textContent = ''
       this.passReset.resetPass(newPass).subscribe(resp =>{
       
