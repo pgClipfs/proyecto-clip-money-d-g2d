@@ -22,11 +22,17 @@
     padding: 1.5em 1.5em 0 1.5em;
     border-color:  #221b1b;
     background-color: #3a3e42;
+    border-color:  #221b1b;
 
 }
 
+input {
+    color: rgb(224, 221, 221);
+}
 
-
+label {
+    color: rgb(170, 164, 164);
+}
 
 
 .titulos {
@@ -85,8 +91,9 @@ fieldset {
 
 #input {
     background-color:#32383e9f;
-    color:rgb(126, 107, 107);
+    color: rgb(224, 221, 221); 
     font-family: 'calibri';
+    font-size: 1.2em;
     border: 0;
     outline: none;
     
