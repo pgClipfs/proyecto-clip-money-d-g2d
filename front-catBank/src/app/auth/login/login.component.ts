@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
     console.log('click')
     const {usuario, password} = this.loginForm.value;
     let msj = document.querySelector('.msj')
-    if (form.invalid) //form.invalid
+    if ('') //form.invalid
     {
       // let msj = document.querySelector('.msj')
       console.log("a")
