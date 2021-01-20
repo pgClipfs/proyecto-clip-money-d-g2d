@@ -3,6 +3,10 @@
     display: none;
 }
 
+.card{
+    margin: 3% 0 15% 0;
+}
+
 .btn {
     padding: .4em;
     margin: .4em;
@@ -10,9 +14,41 @@
 }
 
 .activar {
-    font-size: 1.2em;
+    font-size: 1.5em;
+    margin-left: -.1em;
 }
 
+.cuenta {
+    padding: 1.5em 1.5em 0 1.5em;
+    border-color:  #221b1b;
+    background-color: #3a3e42;
+    border-color:  #221b1b;
+
+}
+
+input {
+    color: rgb(224, 221, 221);
+}
+
+label {
+    color: rgb(170, 164, 164);
+}
+
+
+.titulos {
+    margin-bottom: 1em;
+    font-weight: 500;  
+    font-size: 1.5em;
+    color: rgb(224, 221, 221); 
+}
+
+#message-container {
+    font-size: 100%;
+}
+
+#titulo_miCuenta {
+    font-size: 2em;
+}
 
 .form-subsection-title{
     text-align: center;
@@ -55,8 +91,9 @@ fieldset {
 
 #input {
     background-color:#32383e9f;
-    color:rgb(126, 107, 107);
+    color: rgb(224, 221, 221); 
     font-family: 'calibri';
+    font-size: 1.2em;
     border: 0;
     outline: none;
     

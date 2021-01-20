@@ -42,13 +42,9 @@ export class NewPassComponent implements OnInit {
     let icon = document.querySelector('.icon');
     console.log(icon)
     if ( Password ) {
-      // Password.type = "password"
-      // pass2.type = "password"
       icon.classList.remove('fa', 'fa-eye')
       icon.classList.add("fa", "fa-eye-slash");
   } else {
-    typeof Password === "string"
-    typeof pass2 === "string"
       icon.classList.remove('fa', 'fa-eye-slash')
       icon.classList.add("fa", "fa-eye");      
   }
