@@ -125,6 +125,9 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="WebApiContrib.Formatting.Jsonp, Version=3.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\WebApiContrib.Formatting.Jsonp.3.0.2\lib\net45\WebApiContrib.Formatting.Jsonp.dll</HintPath>
+    </Reference>
     <Reference Include="WebGrease, Version=1.5.2.14234, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
     </Reference>
@@ -176,25 +179,15 @@
     <Content Include="Bundles\styles.js" />
     <Content Include="Bundles\vendor.js" />
     <Content Include="Global.asax" />
-    <Content Include="Models\DB.Context.tt">
+    <Content Include="Models\dbCatBank.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DB.edmx</DependentUpon>
-      <LastGenOutput>DB.Context.cs</LastGenOutput>
+      <DependentUpon>dbCatBank.edmx</DependentUpon>
+      <LastGenOutput>dbCatBank.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\DB.tt">
+    <Content Include="Models\dbCatBank.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DB.edmx</DependentUpon>
-      <LastGenOutput>DB.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\dbEntity.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>dbEntity.edmx</DependentUpon>
-      <LastGenOutput>dbEntity.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\dbEntity.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>dbEntity.edmx</DependentUpon>
-      <LastGenOutput>dbEntity.cs</LastGenOutput>
+      <DependentUpon>dbCatBank.edmx</DependentUpon>
+      <LastGenOutput>dbCatBank.cs</LastGenOutput>
     </Content>
     <Content Include="Web.config" />
   </ItemGroup>
@@ -203,6 +196,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\CuentaController.cs" />
+    <Compile Include="Controllers\CuentasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\PersonaController.cs" />
@@ -214,52 +208,43 @@
     </Compile>
     <Compile Include="Models\activarCuenta.cs" />
     <Compile Include="Models\Clientes.cs">
-      <DependentUpon>dbEntity.tt</DependentUpon>
+      <DependentUpon>dbCatBank.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Cuentas.cs">
-      <DependentUpon>dbEntity.tt</DependentUpon>
+      <DependentUpon>dbCatBank.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DatosAModificar.cs" />
     <Compile Include="Models\datosCuenta.cs" />
-    <Compile Include="Models\DB.Context.cs">
+    <Compile Include="Models\dbCatBank.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DB.Context.tt</DependentUpon>
+      <DependentUpon>dbCatBank.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\DB.cs">
+    <Compile Include="Models\dbCatBank.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DB.tt</DependentUpon>
+      <DependentUpon>dbCatBank.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\DB.Designer.cs">
+    <Compile Include="Models\dbCatBank.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DB.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\dbEntity.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>dbEntity.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\dbEntity.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>dbEntity.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\dbEntity.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>dbEntity.edmx</DependentUpon>
+      <DependentUpon>dbCatBank.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\gestorCuenta.cs" />
+    <Compile Include="Models\GestorCuentas.cs" />
     <Compile Include="Models\GestorLogin.cs" />
     <Compile Include="Models\GestorPersona.cs" />
     <Compile Include="Models\GestorRecovery.cs" />
     <Compile Include="Models\LoginRequest.cs" />
     <Compile Include="Models\NewPass.cs" />
+    <Compile Include="Models\Operaciones.cs">
+      <DependentUpon>dbCatBank.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\OperacionesCuenta.cs" />
     <Compile Include="Models\Persona.cs" />
     <Compile Include="Models\Recovery.cs" />
     <Compile Include="Models\Token.cs" />
+    <Compile Include="Models\Transferencia.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -270,19 +255,12 @@
     <Content Include="Bundles\runtime.js.map" />
     <Content Include="Bundles\styles.js.map" />
     <Content Include="Bundles\vendor.js.map" />
-    <EntityDeploy Include="Models\DB.edmx">
+    <EntityDeploy Include="Models\dbCatBank.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>DB.Designer.cs</LastGenOutput>
+      <LastGenOutput>dbCatBank.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\DB.edmx.diagram">
-      <DependentUpon>DB.edmx</DependentUpon>
-    </Content>
-    <EntityDeploy Include="Models\dbEntity.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>dbEntity.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\dbEntity.edmx.diagram">
-      <DependentUpon>dbEntity.edmx</DependentUpon>
+    <Content Include="Models\dbCatBank.edmx.diagram">
+      <DependentUpon>dbCatBank.edmx</DependentUpon>
     </Content>
     <None Include="packages.config" />
     <Content Include="Views\Home\Index.cshtml" />

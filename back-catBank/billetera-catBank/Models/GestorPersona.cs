@@ -10,16 +10,17 @@ namespace AngularMVCProject.Models
 {
     public class GestorPersonas
     {
-        public bool getUserByUsername(Token token, string claims)
+        public bool getUserByUsername( string claims)
         {
 
-            if (token != null)
-            {
-                return true;
-            } else
-            {
-                return false;
-            }
+            //if (token != null)
+            //{
+            //    return true;
+            //} else
+            //{
+            //    return false;
+            //}
+            return true;
         }
         public int AgregarPersona(Persona nueva)
         {
@@ -155,7 +156,8 @@ namespace AngularMVCProject.Models
 
         public void ModificarPersona(DatosAModificar modificar)
         {
-            using( Models.dbHomeBank db= new Models.dbHomeBank()){
+            using (Models.dbHomeBank db = new dbHomeBank())
+            {
                 var oUser = db.Clientes.Where(d => d.idCliente== modificar.Id).FirstOrDefault();
                 if (modificar.Localidad != null)
                 {

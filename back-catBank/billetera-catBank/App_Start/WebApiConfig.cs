@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Routing;
 using AngularMVCProject.Controllers;
 
 namespace AngularMVCProject
@@ -13,9 +16,10 @@ namespace AngularMVCProject
             // Configuración y servicios de API web
 
             // Rutas de API web
-            config.MapHttpAttributeRoutes();
 
             config.EnableCors();
+
+            config.MapHttpAttributeRoutes();
 
             config.MessageHandlers.Add(new TokenValidationHandler());
 

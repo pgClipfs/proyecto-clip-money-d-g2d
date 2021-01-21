@@ -19,7 +19,7 @@ namespace AngularMVCProject.Models
             try
             {
                 string token = GetSha256(Guid.NewGuid().ToString());
-                using (Models.dbEntityToken db = new Models.dbEntityToken())
+                using (Models.dbHomeBank db = new Models.dbHomeBank())
                 {
                     var oUser = db.Clientes.Where(d => d.mail == recovery.Mail).FirstOrDefault();
                     if (oUser != null)
@@ -57,7 +57,7 @@ namespace AngularMVCProject.Models
         {
             try
             {
-                using (Models.dbEntityToken db= new Models.dbEntityToken())
+                using (Models.dbHomeBank db = new Models.dbHomeBank())
                 {
                     var oUser = db.Clientes.Where(d => d.token == newPass.Token).FirstOrDefault();
                     if (oUser != null)
