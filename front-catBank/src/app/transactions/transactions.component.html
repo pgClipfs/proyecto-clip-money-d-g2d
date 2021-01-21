@@ -35,7 +35,7 @@
                                 </div>
                             </div>
 
-                            
+
                             <div>
                                 <div class="d-flex flex-row">
                                     <div class="col-md-3">
@@ -166,7 +166,7 @@
                         <div class="col-md-5">
                             <div class="datos_cuenta border border-dark p-3">
                                 <div class="text-center">
-                                    <p id="datos_cuenta"><b>DATOS DE LA CUENTA</b></p>                                    
+                                    <p id="datos_cuenta"><b>DATOS DE LA CUENTA</b></p>
                                 </div>
                                 <div>
                                     <div class="d-flex flex-row">
@@ -175,7 +175,7 @@
                                         </div>
                                         <div class="col-md-7 text-right">
                                             <p>12345678912</p>
-                                        </div>                                        
+                                        </div>
                                     </div>
                                 </div>
                                 <div>
@@ -185,7 +185,7 @@
                                         </div>
                                         <div class="col-md-7 text-right">
                                             <p>12345678912</p>
-                                        </div>                                        
+                                        </div>
                                     </div>
                                 </div>
                                 <div>
@@ -195,7 +195,7 @@
                                         </div>
                                         <div class="col-md-7 text-right">
                                             <p>MAR-ARENA-SOL</p>
-                                        </div>                                        
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -204,11 +204,23 @@
                                     <p id="saldo_disponible_p"><b>SALDO ACTUAL</b></p>
                                     <p>50000</p>
                                 </div>
-                                <div class="text-center mt-3" >
-                                    <button type="button" class="btn btn-dark" id="btn_ingresar" (click)= "verRetirarMonto()">Ingresar dinero</button>
-                                    <button type="button" class="btn btn-dark" id="btn_retirar" (click)= "verIngresarMonto()">Retirar dinero</button>
+                                <div class="text-center mt-3">
+                                    <div>
+                                        <button type="button" class="btn btn-dark" id="btn_ingresar"
+                                            (click)="verRetirarMonto()">Ingresar dinero</button>
+                                        <button type="button" class="btn btn-dark" id="btn_retirar"
+                                            (click)="verIngresarMonto()">Retirar dinero</button>
+                                    </div>
+                                    <div>
+                                        <button type="button" class="btn btn-dark" id="btn_giro"
+                                            (click)="giro()">Giro al descubierto</button>
+
+                                        <button type="button" class="btn btn-dark" id="btn_prestamo"
+                                            (click)="prestamo()">Prestamo</button>
+                                    </div>
+
                                 </div>
-    
+
                                 <div class="montos">
                                     <div class="noVisible text-center mt-5" id="ingresar_monto">
                                         <div>
@@ -216,22 +228,59 @@
                                             <input type="number" id="" name="">
                                         </div>
                                         <div>
-                                            <button type="button" class="btn monto btn-dark" (click)= "ingresarAceptarMonto()">Aceptar</button>
-                                            <button type="button" class="btn monto btn-dark" (click)= "ingresarAceptarMonto()">Cancelar</button>
+                                            <button type="button" class="btn monto btn-dark"
+                                                (click)="ingresarAceptarMonto()">Aceptar</button>
+                                            <button type="button" class="btn monto btn-dark"
+                                                (click)="ingresarAceptarMonto()">Cancelar</button>
                                         </div>
                                     </div>
-        
+
                                     <div class="noVisible text-center mt-5" id="ingresar_monto_retirar">
                                         <div>
                                             <p>Coloque el monto a retirar</p>
                                             <input type="number" id="" name="">
                                         </div>
                                         <div>
-                                            <button type="button" class="btn monto btn-dark" (click)= "retirarAceptarMonto()">Aceptar</button>
-                                            <button type="button" class="btn monto btn-dark" (click)= "retirarAceptarMonto()">Cancelar</button>
+                                            <button type="button" class="btn monto btn-dark"
+                                                (click)="retirarAceptarMonto()">Aceptar</button>
+                                            <button type="button" class="btn monto btn-dark"
+                                                (click)="retirarAceptarMonto()">Cancelar</button>
                                         </div>
-                                    </div>
+                                    </div>                            
                                 </div>
+
+                                <div class="montos">
+                                    <div class="noVisible text-center mt-5" id="ingresar_giro">
+                                        <div>
+                                            <p>Coloque el monto del giro</p>
+                                            <input type="number" id="" name="">
+                                        </div>
+                                        <div>
+                                            <button type="button" class="btn monto btn-dark"
+                                                (click)="aceptarGiro()">Aceptar</button>
+                                            <button type="button" class="btn monto btn-dark"
+                                                (click)="cancelarGiro()">Cancelar</button>
+                                        </div>
+                                    </div>                                    
+                                </div>
+
+
+                                <div class="montos">
+                                    <div class="noVisible text-center mt-5" id="ingresar_prestamo">
+                                        <div>
+                                            <p>Coloque el monto del prestamo</p>
+                                            <input type="number" id="" name="">
+                                        </div>
+                                        <div>
+                                            <button type="button" class="btn monto btn-dark"
+                                                (click)="aceptarPrestamo()">Aceptar</button>
+                                            <button type="button" class="btn monto btn-dark"
+                                                (click)="cancelarPrestamo()">Cancelar</button>
+                                        </div>
+                                    </div>                                    
+                                </div>
+
+
                             </div>
 
 
