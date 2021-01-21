@@ -47,19 +47,21 @@ export class MiCuentaComponent implements OnInit {
     
     this.miCuentaService.userInfo()
       .subscribe( resp =>{
+        console.log(resp)
         const id= localStorage.setItem('Cliente', resp['idCliente'])
           const nombre= document.getElementById('nombre')
+          console.log(nombre)
           const apellido = document.getElementById('apellido')
           const dni = document.getElementById('dni')
           const usuario = document.getElementById('usuario')
-          nombre.innerHTML = `${resp['nombre']}`
-          apellido.innerHTML = `${resp['apellido']}`
-          dni.innerHTML = `${resp['dni']}`
-          usuario.innerHTML = `${resp['usuario']}`
-          this.getPais = resp['pais'] 
-          this.getCiudad = resp['localidad']
-          this.getMail = resp['mail']
-          this.getTelefono = resp['telefono']
+          nombre.innerHTML = `${resp['Nombre']}`
+          apellido.innerHTML = `${resp['Apellido']}`
+          dni.innerHTML = `${resp['Dni']}`
+          usuario.innerHTML = `${resp['Usuario']}`
+          this.getPais = resp['Pais'] 
+          this.getCiudad = resp['Localidad']
+          this.getMail = resp['Mail']
+          this.getTelefono = resp['Telefono']
            
     
     },
@@ -137,8 +139,9 @@ export class MiCuentaComponent implements OnInit {
     this.setValue() 
     this.miCuentaService.modifyInfo(ModifyInfo).subscribe(resp =>{
       
-      
+      console.log('respuesta del servicio')
       console.log(resp)
+      console.log('respuesta del servicio')
     },
     err =>{
       if(err.status == 401) console.log(err)
