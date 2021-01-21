@@ -202,7 +202,7 @@
                             <div>
                                 <div class="text-center border border-dark p-3" id="saldo_disponible">
                                     <p id="saldo_disponible_p"><b>SALDO ACTUAL</b></p>
-                                    <p>50000</p>
+                                    <p id= "saldoActual">50000</p>
                                 </div>
                                 <div class="text-center mt-3">
                                     <div>
@@ -223,28 +223,38 @@
 
                                 <div class="montos">
                                     <div class="noVisible text-center mt-5" id="ingresar_monto">
-                                        <div>
-                                            <p>Coloque el monto a ingresar</p>
-                                            <input type="number" id="" name="">
-                                        </div>
+                                        <form [formGroup]="ingresarSaldoForm" class="form_container" #formulario="ngForm">
+                                            <div class="form-group">
+                                                <input id="Id" name="Id" type="hidden" class="form-control" formControlName="Id" [(ngModel)]="selectedingresarSaldo.Id">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="monto">Coloque el monto a ingresar</label>
+                                                <input type="number" id="ingresarSaldo" name="monto" class="form-control" formControlName="Monto" [(ngModel)]="selectedingresarSaldo.Monto" required>
+                                            </div>
+                                        </form>
                                         <div>
                                             <button type="button" class="btn monto btn-dark"
-                                                (click)="ingresarAceptarMonto()">Aceptar</button>
+                                                (click)="ingresarAceptarMonto(formulario, selectedingresarSaldo)">Aceptar</button>
                                             <button type="button" class="btn monto btn-dark"
-                                                (click)="ingresarAceptarMonto()">Cancelar</button>
+                                                (click)="cancelarAceptarMonto()">Cancelar</button>
                                         </div>
                                     </div>
 
                                     <div class="noVisible text-center mt-5" id="ingresar_monto_retirar">
-                                        <div>
-                                            <p>Coloque el monto a retirar</p>
-                                            <input type="number" id="" name="">
-                                        </div>
+                                        <form [formGroup]="ingresarSaldoForm" class="form_container" #formulario="ngForm">
+                                            <div class="form-group">
+                                                <input id="Id" name="Id" type="hidden" class="form-control" formControlName="Id" [(ngModel)]="selectedingresarSaldo.Id">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="monto">Coloque el monto a ingresar</label>
+                                                <input type="number" id="ingresarSaldo" name="monto" class="form-control" formControlName="Monto" [(ngModel)]="selectedingresarSaldo.Monto" required>
+                                            </div>
+                                        </form>
                                         <div>
                                             <button type="button" class="btn monto btn-dark"
-                                                (click)="retirarAceptarMonto()">Aceptar</button>
+                                                (click)="retirarAceptarMonto(formulario, selectedingresarSaldo)">Aceptar</button>
                                             <button type="button" class="btn monto btn-dark"
-                                                (click)="retirarAceptarMonto()">Cancelar</button>
+                                                (click)="cancelarRetiro()">Cancelar</button>
                                         </div>
                                     </div>                            
                                 </div>
@@ -288,5 +298,15 @@
                     </form>
 
 
+                </div>
+            </div>
+            <div class="row">
+                <div id="modal_popup">
+                    <div class="card text-white bg-dark mb-3 sendMail" >
+                        <div class="card-header"><div class="close-btn">+</div>Cat Bank</div>
+                        <div class="card-body">
+                            <p class= "MsjeOperación"></p>
+                        </div>
+                      </div>
                 </div>
             </div>
