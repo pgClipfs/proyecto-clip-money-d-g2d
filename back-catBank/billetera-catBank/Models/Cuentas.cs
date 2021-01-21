@@ -14,6 +14,12 @@ namespace AngularMVCProject.Models
     
     public partial class Cuentas
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Cuentas()
+        {
+            this.Operaciones = new HashSet<Operaciones>();
+        }
+    
         public int idCuenta { get; set; }
         public string cbu { get; set; }
         public string alias { get; set; }
@@ -24,5 +30,7 @@ namespace AngularMVCProject.Models
         public Nullable<bool> estado { get; set; }
     
         public virtual Clientes Clientes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Operaciones> Operaciones { get; set; }
     }
 }

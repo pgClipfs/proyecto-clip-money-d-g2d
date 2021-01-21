@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="dbHomeBankModel2.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Clientes">
+    <Key>
+      <PropertyRef Name="idCliente" />
+    </Key>
+    <Property Name="idCliente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="apellido" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="dni" Type="int" Nullable="false" />
+    <Property Name="pais" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="localidad" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="mail" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="telefono" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="usuario" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="pass" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="token" Type="varchar" MaxLength="100" />
+    <Property Name="fotoFrenteDni" Type="varchar" MaxLength="50" />
+    <Property Name="fotoDorsoDni" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Cuentas">
+    <Key>
+      <PropertyRef Name="idCuenta" />
+    </Key>
+    <Property Name="idCuenta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="cbu" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="alias" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="saldoPesos" Type="money" />
+    <Property Name="saldoDolares" Type="money" />
+    <Property Name="cvu" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="idCliente" Type="int" Nullable="false" />
+    <Property Name="estado" Type="bit" />
+  </EntityType>
+  <EntityType Name="Operaciones">
+    <Key>
+      <PropertyRef Name="idOperacion" />
+    </Key>
+    <Property Name="idOperacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombreOperacion" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="montoPesos" Type="money" />
+    <Property Name="tiempoPlazo" Type="date" />
+    <Property Name="destino" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="fecha" Type="datetime" Nullable="false" />
+    <Property Name="montoDolares" Type="money" />
+    <Property Name="idCuenta" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="fk_Cuentas_reference_Clientes">
+    <End Role="Clientes" Type="Self.Clientes" Multiplicity="1" />
+    <End Role="Cuentas" Type="Self.Cuentas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Clientes">
+        <PropertyRef Name="idCliente" />
+      </Principal>
+      <Dependent Role="Cuentas">
+        <PropertyRef Name="idCliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Operaciones_reference_Cuentas">
+    <End Role="Cuentas" Type="Self.Cuentas" Multiplicity="1" />
+    <End Role="Operaciones" Type="Self.Operaciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cuentas">
+        <PropertyRef Name="idCuenta" />
+      </Principal>
+      <Dependent Role="Operaciones">
+        <PropertyRef Name="idCuenta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="dbHomeBankModel2StoreContainer">
+    <EntitySet Name="Clientes" EntityType="Self.Clientes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Cuentas" EntityType="Self.Cuentas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Operaciones" EntityType="Self.Operaciones" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="fk_Cuentas_reference_Clientes" Association="Self.fk_Cuentas_reference_Clientes">
+      <End Role="Clientes" EntitySet="Clientes" />
+      <End Role="Cuentas" EntitySet="Cuentas" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Operaciones_reference_Cuentas" Association="Self.fk_Operaciones_reference_Cuentas">
+      <End Role="Cuentas" EntitySet="Cuentas" />
+      <End Role="Operaciones" EntitySet="Operaciones" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
