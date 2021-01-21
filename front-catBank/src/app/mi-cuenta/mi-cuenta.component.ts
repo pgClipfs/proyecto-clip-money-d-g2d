@@ -48,7 +48,7 @@ export class MiCuentaComponent implements OnInit {
     this.miCuentaService.userInfo()
       .subscribe( resp =>{
         console.log(resp)
-        const id= localStorage.setItem('Cliente', resp['idCliente'])
+        const id= localStorage.setItem('Cliente', resp['Id'])
           const nombre= document.getElementById('nombre')
           console.log(nombre)
           const apellido = document.getElementById('apellido')

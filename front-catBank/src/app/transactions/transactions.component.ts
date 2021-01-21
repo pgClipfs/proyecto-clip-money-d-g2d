@@ -1,4 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+import { OperatoriaPesos } from '../models/operatoriaPesos';
+import { OperatoriaPesosService } from '../services/operatoria-pesos.service';
+import { HttpRequest } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-transactions',
@@ -6,15 +13,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./transactions.component.scss']
 })
 export class TransactionsComponent implements OnInit {
+  public OperatoriaPesos: OperatoriaPesos[];
+  selectedingresarSaldo: OperatoriaPesos = new OperatoriaPesos();
+  setValue() {
+    this.selectedingresarSaldo.Id = localStorage.getItem('Cliente')
+  }
+  ingresarSaldoForm = new FormGroup({
+    Id: new FormControl(localStorage.getItem('Cliente')),
+    Monto: new FormControl(),
+  })
 
-  constructor() { }
+  constructor(private transactionsService: OperatoriaPesosService,  private router: Router) { }
 
   ngOnInit(): void {
   }
 
 
   //Hace visible el input para ingresar dinero 
-
   public verRetirarMonto() {
     var ingresarMont = document.getElementById('ingresar_monto')
     ingresarMont.classList.remove("noVisible");
@@ -33,17 +48,60 @@ export class TransactionsComponent implements OnInit {
 
   //Acepta el monto ingresado   
 
-  public ingresarAceptarMonto() {
+  public ingresarAceptarMonto(form: NgForm, IngresarSaldo: OperatoriaPesos ) {
+    var ingresarMont = document.getElementById('ingresar_monto')
+    const MsjeOperación = document.querySelector('.MsjeOperación')
+    ingresarMont.classList.add("noVisible");
+    this.setValue() 
+    console.log(IngresarSaldo)
+    console.log(form)
+    this.transactionsService.ingresarSaldo(IngresarSaldo)
+      .subscribe( resp =>{
+        this.Modal()
+        MsjeOperación.textContent =  `Operacíon sealizada con éxito. Su saldo es ${resp}`
+        const saldoActual = document.getElementById('saldoActual')
+        console.log(saldoActual)
+        saldoActual.innerHTML = resp
+    },
+    err =>{
+      this.Modal()
+      MsjeOperación.textContent =  `Lo sentimos, no se puede realizar esta operación.`
+    });
+  }
+  // Cancela el ingreso de saldo 
+  public cancelarAceptarMonto( ) {
     var ingresarMont = document.getElementById('ingresar_monto')
     ingresarMont.classList.add("noVisible");
   }
 
   //Acepta el monto a retirar   
 
-  public retirarAceptarMonto() {
+  public retirarAceptarMonto(form: NgForm, IngresarSaldo: OperatoriaPesos) {
+    var ingresarMont = document.getElementById('ingresar_monto_retirar')
+    const MsjeOperación = document.querySelector('.MsjeOperación')
+    ingresarMont.classList.add("noVisible");
+    this.setValue() 
+    this.transactionsService.retirarSaldo(IngresarSaldo)
+      .subscribe( async resp =>{
+        this.Modal()
+        MsjeOperación.textContent =  `Operacíon sealizada con éxito. Su saldo es ${await resp}`
+        const saldoActual = document.getElementById('saldoActual')
+        console.log(saldoActual)
+        saldoActual.innerHTML = resp
+       
+    },
+    err =>{
+      this.Modal()
+      MsjeOperación.textContent =  `Lo sentimos, no se puede realizar esta operación.`
+    });
+  }
+
+  // Cancela retiro
+  public cancelarRetiro() {
     var ingresarMont = document.getElementById('ingresar_monto_retirar')
     ingresarMont.classList.add("noVisible");
   }
+
 
 
 
@@ -91,11 +149,15 @@ export class TransactionsComponent implements OnInit {
     ingresarMont.classList.add("noVisible");
   }
 
+  // modal para mostrar el estado de la operación
 
-
-
-
-
-
+  public Modal(){
+    let mailInput= document.getElementById("modal_popup")
+    console.log(mailInput)
+    mailInput.style.display = "flex"
+    document.querySelector('.close-btn').addEventListener('click', ()=> {
+    mailInput.style.display = "none"
+  })
+}
 
 }
