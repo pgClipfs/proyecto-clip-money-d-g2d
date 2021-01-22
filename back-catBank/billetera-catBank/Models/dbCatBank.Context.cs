@@ -13,10 +13,10 @@ namespace AngularMVCProject.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class dbEntityToken : DbContext
+    public partial class dbHomeBank : DbContext
     {
-        public dbEntityToken()
-            : base("name=dbEntityToken")
+        public dbHomeBank()
+            : base("name=dbHomeBank")
         {
         }
     
@@ -26,5 +26,7 @@ namespace AngularMVCProject.Models
         }
     
         public virtual DbSet<Clientes> Clientes { get; set; }
+        public virtual DbSet<Cuentas> Cuentas { get; set; }
+        public virtual DbSet<Operaciones> Operaciones { get; set; }
     }
 }

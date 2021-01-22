@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="dbHomeBankModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="dbHomeBankModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Clientes">
           <Key>
             <PropertyRef Name="idCliente" />
@@ -36,6 +36,19 @@
           <Property Name="idCliente" Type="int" Nullable="false" />
           <Property Name="estado" Type="bit" />
         </EntityType>
+        <EntityType Name="Operaciones">
+          <Key>
+            <PropertyRef Name="idOperacion" />
+          </Key>
+          <Property Name="idOperacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombreOperacion" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="montoPesos" Type="money" />
+          <Property Name="tiempoPlazo" Type="date" />
+          <Property Name="destino" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="fecha" Type="datetime" Nullable="false" />
+          <Property Name="montoDolares" Type="money" />
+          <Property Name="idCuenta" Type="int" Nullable="false" />
+        </EntityType>
         <Association Name="fk_Cuentas_reference_Clientes">
           <End Role="Clientes" Type="Self.Clientes" Multiplicity="1" />
           <End Role="Cuentas" Type="Self.Cuentas" Multiplicity="*" />
@@ -48,19 +61,36 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="dbHomeBankModel1StoreContainer">
+        <Association Name="fk_Operaciones_reference_Cuentas">
+          <End Role="Cuentas" Type="Self.Cuentas" Multiplicity="1" />
+          <End Role="Operaciones" Type="Self.Operaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cuentas">
+              <PropertyRef Name="idCuenta" />
+            </Principal>
+            <Dependent Role="Operaciones">
+              <PropertyRef Name="idCuenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="dbHomeBankModelStoreContainer">
           <EntitySet Name="Clientes" EntityType="Self.Clientes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cuentas" EntityType="Self.Cuentas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Operaciones" EntityType="Self.Operaciones" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="fk_Cuentas_reference_Clientes" Association="Self.fk_Cuentas_reference_Clientes">
             <End Role="Clientes" EntitySet="Clientes" />
             <End Role="Cuentas" EntitySet="Cuentas" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Operaciones_reference_Cuentas" Association="Self.fk_Operaciones_reference_Cuentas">
+            <End Role="Cuentas" EntitySet="Cuentas" />
+            <End Role="Operaciones" EntitySet="Operaciones" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="dbHomeBankModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="dbHomeBankModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Clientes">
           <Key>
             <PropertyRef Name="idCliente" />
@@ -93,6 +123,21 @@
           <Property Name="idCliente" Type="Int32" Nullable="false" />
           <Property Name="estado" Type="Boolean" />
           <NavigationProperty Name="Clientes" Relationship="Self.fk_Cuentas_reference_Clientes" FromRole="Cuentas" ToRole="Clientes" />
+          <NavigationProperty Name="Operaciones" Relationship="Self.fk_Operaciones_reference_Cuentas" FromRole="Cuentas" ToRole="Operaciones" />
+        </EntityType>
+        <EntityType Name="Operaciones">
+          <Key>
+            <PropertyRef Name="idOperacion" />
+          </Key>
+          <Property Name="idOperacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombreOperacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="montoPesos" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="tiempoPlazo" Type="DateTime" Precision="0" />
+          <Property Name="destino" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="montoDolares" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="idCuenta" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Cuentas" Relationship="Self.fk_Operaciones_reference_Cuentas" FromRole="Operaciones" ToRole="Cuentas" />
         </EntityType>
         <Association Name="fk_Cuentas_reference_Clientes">
           <End Role="Clientes" Type="Self.Clientes" Multiplicity="1" />
@@ -106,12 +151,29 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="fk_Operaciones_reference_Cuentas">
+          <End Role="Cuentas" Type="Self.Cuentas" Multiplicity="1" />
+          <End Role="Operaciones" Type="Self.Operaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cuentas">
+              <PropertyRef Name="idCuenta" />
+            </Principal>
+            <Dependent Role="Operaciones">
+              <PropertyRef Name="idCuenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="dbHomeBank" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Clientes" EntityType="Self.Clientes" />
           <EntitySet Name="Cuentas" EntityType="Self.Cuentas" />
+          <EntitySet Name="Operaciones" EntityType="Self.Operaciones" />
           <AssociationSet Name="fk_Cuentas_reference_Clientes" Association="Self.fk_Cuentas_reference_Clientes">
             <End Role="Clientes" EntitySet="Clientes" />
             <End Role="Cuentas" EntitySet="Cuentas" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Operaciones_reference_Cuentas" Association="Self.fk_Operaciones_reference_Cuentas">
+            <End Role="Cuentas" EntitySet="Cuentas" />
+            <End Role="Operaciones" EntitySet="Operaciones" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -119,9 +181,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="dbHomeBankModel1StoreContainer" CdmEntityContainer="dbHomeBank">
+        <EntityContainerMapping StorageEntityContainer="dbHomeBankModelStoreContainer" CdmEntityContainer="dbHomeBank">
           <EntitySetMapping Name="Clientes">
-            <EntityTypeMapping TypeName="dbHomeBankModel1.Clientes">
+            <EntityTypeMapping TypeName="dbHomeBankModel.Clientes">
               <MappingFragment StoreEntitySet="Clientes">
                 <ScalarProperty Name="idCliente" ColumnName="idCliente" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
@@ -140,7 +202,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Cuentas">
-            <EntityTypeMapping TypeName="dbHomeBankModel1.Cuentas">
+            <EntityTypeMapping TypeName="dbHomeBankModel.Cuentas">
               <MappingFragment StoreEntitySet="Cuentas">
                 <ScalarProperty Name="idCuenta" ColumnName="idCuenta" />
                 <ScalarProperty Name="cbu" ColumnName="cbu" />
@@ -150,6 +212,20 @@
                 <ScalarProperty Name="cvu" ColumnName="cvu" />
                 <ScalarProperty Name="idCliente" ColumnName="idCliente" />
                 <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Operaciones">
+            <EntityTypeMapping TypeName="dbHomeBankModel.Operaciones">
+              <MappingFragment StoreEntitySet="Operaciones">
+                <ScalarProperty Name="idOperacion" ColumnName="idOperacion" />
+                <ScalarProperty Name="nombreOperacion" ColumnName="nombreOperacion" />
+                <ScalarProperty Name="montoPesos" ColumnName="montoPesos" />
+                <ScalarProperty Name="tiempoPlazo" ColumnName="tiempoPlazo" />
+                <ScalarProperty Name="destino" ColumnName="destino" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="montoDolares" ColumnName="montoDolares" />
+                <ScalarProperty Name="idCuenta" ColumnName="idCuenta" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

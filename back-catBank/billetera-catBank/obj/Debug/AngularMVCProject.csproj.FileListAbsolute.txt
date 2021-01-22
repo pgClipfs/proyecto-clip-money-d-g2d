@@ -248,3 +248,5 @@ C:\Users\clip\source\repos\proyecto-catBank\back-catBank\billetera-catBank\bin\E
 C:\Users\clip\source\repos\proyecto-catBank\back-catBank\billetera-catBank\bin\EntityFramework.SqlServer.dll
 C:\Users\clip\source\repos\proyecto-catBank\back-catBank\billetera-catBank\bin\EntityFramework.xml
 C:\Users\clip\source\repos\proyecto-catBank\back-catBank\billetera-catBank\bin\EntityFramework.SqlServer.xml
+C:\Users\clip\source\repos\proyecto-catBank\back-catBank\billetera-catBank\bin\WebApiContrib.Formatting.Jsonp.dll
+C:\Users\clip\source\repos\proyecto-catBank\back-catBank\billetera-catBank\bin\WebApiContrib.Formatting.Jsonp.pdb

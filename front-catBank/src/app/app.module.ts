@@ -17,7 +17,7 @@ import { ReserPassComponent } from './auth/auth/reser-pass/reser-pass.component'
     AppComponent,
     NavbarComponent,
     FooterComponent,
-    ReserPassComponent,
+    ReserPassComponent
   ],
   imports: [
     BrowserModule,
