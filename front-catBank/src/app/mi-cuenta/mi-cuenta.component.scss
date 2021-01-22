@@ -1,4 +1,8 @@
 
+p {
+    font-size: 2.5em;
+}
+
 .noVisible {
     display: none;
 }
@@ -8,9 +12,9 @@
 }
 
 .btn {
-    padding: .4em;
-    margin: .4em;
-    font-size: .9em;
+    padding: .5em;
+    margin-left: 1em;
+    
 }
 
 .activar {
@@ -28,10 +32,14 @@
 
 input {
     color: rgb(224, 221, 221);
+    max-width: 70%;
+    max-height: 80%;
 }
 
 label {
     color: rgb(170, 164, 164);
+    font-size: 1.1em;
+    padding-left: 2em;
 }
 
 
@@ -50,50 +58,12 @@ label {
     font-size: 2em;
 }
 
-.form-subsection-title{
-    text-align: center;
-    background-color: #221b1b2f ;
-    color:#aaa;
-    font-size: 2em;
-    font-family: "Segoe UI";
-    
-}
-
-.form-line-wrapper{
-    margin: 0;
-    background-color: #32383e;
-}
-.form-subsection{
-    background-color:  #32383e;
-    color: #aaa;
-    font-family: 'calibri';
-}
-
-.form-line-wrapper {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin: 0 0 15px;
-    color: #aaa;
-    border-radius: 5px;
-}
-
-
-
-fieldset {
-    min-width: 0 ;
-    padding: 30px;
-    margin: 100px 0px;
-    border: 1px solid rgba(0, 0, 0, 0.6);
-    background-color: #32383e;
-    border-radius: 0.25rem;
-}
 
 #input {
     background-color:#32383e9f;
     color: rgb(224, 221, 221); 
     font-family: 'calibri';
-    font-size: 1.2em;
+    
     border: 0;
     outline: none;
     
@@ -110,5 +80,4 @@ fieldset {
     text-align: center;
     background-color:rgb(3, 3, 3) ;
 }
-
 

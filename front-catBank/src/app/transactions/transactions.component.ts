@@ -59,14 +59,14 @@ export class TransactionsComponent implements OnInit {
     console.log(form)
     this.transactionsService.ingresarSaldo(IngresarSaldo)
       .subscribe( resp =>{
-        this.Modal()
+        //this.Modal()
         MsjeOperación.textContent =  `Operacíon sealizada con éxito. Su saldo es ${resp}`
         const saldoActual = document.getElementById('saldoActual')
         console.log(saldoActual)
         saldoActual.innerHTML = resp
     },
     err =>{
-      this.Modal()
+      //this.Modal()
       MsjeOperación.textContent =  `Lo sentimos, no se puede realizar esta operación.`
     });
   }
@@ -85,7 +85,7 @@ export class TransactionsComponent implements OnInit {
     this.setValue() 
     this.transactionsService.retirarSaldo(IngresarSaldo)
       .subscribe( async resp =>{
-        this.Modal()
+        //this.Modal()
         MsjeOperación.textContent =  `Operacíon sealizada con éxito. Su saldo es ${await resp}`
         const saldoActual = document.getElementById('saldoActual')
         console.log(saldoActual)
@@ -93,7 +93,7 @@ export class TransactionsComponent implements OnInit {
        
     },
     err =>{
-      this.Modal()
+      //this.Modal()
       MsjeOperación.textContent =  `Lo sentimos, no se puede realizar esta operación.`
     });
   }
