@@ -216,7 +216,7 @@
                                             (click)="giro()">Giro al descubierto</button>
 
                                         <button type="button" class="btn btn-dark" id="btn_prestamo"
-                                            (click)="prestamo()">Prestamo</button>
+                                            (click)="prestamo()">Transferencia</button>
                                     </div>
 
                                 </div>
@@ -262,8 +262,9 @@
                                 <div class="montos">
                                     <div class="noVisible text-center mt-5" id="ingresar_giro">
                                         <div>
-                                            <p>Coloque el monto del giro</p>
-                                            <input type="number" id="" name="">
+                                            <p>¿Usted desea realizar el giro?</p>
+                                            <p>Se hará una extracción de su saldo actual más un 10% de este.</p>
+                                            
                                         </div>
                                         <div>
                                             <button type="button" class="btn monto btn-dark"
@@ -277,15 +278,31 @@
 
                                 <div class="montos">
                                     <div class="noVisible text-center mt-5" id="ingresar_prestamo">
-                                        <div>
-                                            <p>Coloque el monto del prestamo</p>
-                                            <input type="number" id="" name="">
-                                        </div>
+                                        <form [formGroup]="transferirSaldoForm" class="form_container" #formulario="ngForm">
+                                            <div class="form-group">
+                                                <input id="Id" name="Id" type="hidden" class="form-control" formControlName="Id" [(ngModel)]="selectedTransferirSaldo.Id">
+                                            </div>
+                                            <div class="form-group">
+                                                <div>
+                                                    <label for="monto">Monto a transferir*</label>
+                                                    <input type="number" id="ingresarSaldo" name="monto" class="form-control" formControlName="Monto" [(ngModel)]="selectedTransferirSaldo.Monto" required>
+                                                </div>
+                                                <div>
+                                                    <label for="monto">Alias</label>
+                                                    <input type="string" id="ingresarSaldo" name="monto" class="form-control" formControlName="Alias" [(ngModel)]="selectedTransferirSaldo.Alias" required>
+                                                </div>
+                                                <div>
+                                                    <label for="monto">Cbu</label>
+                                                    <input type="string" id="ingresarSaldo" name="monto" class="form-control" formControlName="Cbu" [(ngModel)]="selectedTransferirSaldo.Cbu" required>
+                                                </div>
+                                                <p>Debe colocar al menos un cbu o Alias</p>
+                                            </div>
+                                        </form>
                                         <div>
                                             <button type="button" class="btn monto btn-dark"
-                                                (click)="retirarAceptarMonto()">Aceptar</button>
+                                                (click)="aceptarPrestamo(formulario, selectedTransferirSaldo)">Aceptar</button>
                                             <button type="button" class="btn monto btn-dark"
-                                                (click)="retirarAceptarMonto()">Cancelar</button>
+                                                (click)="cancelarPrestamo()">Cancelar</button>
                                         </div>
                                     </div>                            
                                 </div>
@@ -309,12 +326,12 @@
                                 <div class="montos">
                                     <div class="noVisible text-center mt-5" id="ingresar_prestamo">
                                         <div>
-                                            <p>Coloque el monto del prestamo</p>
+                                            <p>Coloque el monto a transferir</p>
                                             <input type="number" id="" name="">
                                         </div>
                                         <div>
                                             <button type="button" class="btn monto btn-dark"
-                                                (click)="aceptarPrestamo()">Aceptar</button>
+                                                >Aceptar</button>
                                             <button type="button" class="btn monto btn-dark"
                                                 (click)="cancelarPrestamo()">Cancelar</button>
                                         </div>
@@ -332,16 +349,16 @@
                 </div>
             </div>
 
-            <!--
+            
             <div class="row">
                 <div id="modal_popup">
                     <div class="card text-white bg-dark mb-3 sendMail" >
                         <div class="card-header"><div class="close-btn">+</div>Cat Bank</div>
                         <div class="card-body">
-                            <p class= "MsjeOperación"></p>
+                            <p class= "MsjeOperación">Mensaje de error en el que se muestra si la operación fue exitosa</p>
                         </div>
                       </div>
                 </div>
             </div>
 
-            -->
+           
