@@ -39,23 +39,38 @@ export class TransactionsComponent implements OnInit {
   ngOnInit(): void {
     this.transactionsService.accountInfo()
       .subscribe( resp =>{
+         document.getElementById('cbuValue').innerHTML = `${resp.valueOf()['cbu']}`
+         document.getElementById('cvuValue').innerHTML = `${resp.valueOf()['cvu']}`
+         document.getElementById('aliasValue').innerHTML = `${resp.valueOf()['alias']}`
+        document.getElementById('saldoActual').innerHTML = `${resp.valueOf()['saldoPesos']}`
+        const detalleCont= document.getElementById('detalleOperacion')
+        console.log(detalleCont)
         console.log(resp)
         console.log(resp.valueOf()['alias'])
         resp['OPerCuenta'].forEach(o => {
+          const detalleRowCont = document.createElement("div")
+          detalleCont.appendChild(detalleRowCont)
+          const fecha = document.createElement('div')
+          fecha.classList.add('col-md-3')
+          fecha.innerHTML = `${o['Fecha']}`
+          const movimiento = document.createElement('div')
+          movimiento.classList.add('col-md-4')
+          movimiento.innerHTML = `${o['NombreOperacion']}`
+          const destino = document.createElement('div')
+          destino.classList.add('col-md-3')
+          destino.innerHTML = `${o['Destino']}`
+          const monto = document.createElement('div')
+          monto.classList.add('col-md-3')
+          monto.innerHTML = `${o['MontoPesos']}`
+          detalleRowCont.classList.add('d-flex')
+          detalleRowCont.classList.add('flex-row')
+          detalleRowCont.classList.add('my-2') 
+          detalleRowCont.appendChild(fecha)
+          detalleRowCont.appendChild(movimiento)
+          detalleRowCont.appendChild(destino)
+          detalleRowCont.appendChild(monto)
           console.log(o['Destino'])
-        });
-        
-        function getPropertyNames(resp) {
-          var proto = Object.getPrototypeOf(resp);
-          return (
-              (typeof proto === 'object' && proto !== null ? getPropertyNames(proto) : [])
-              .concat(Object.getOwnPropertyNames(resp))
-              .filter(function(item, pos, result) { return result.indexOf(item) === pos; })
-              .sort()
-          );
-      }
-      
-        
+        });     
     },
     err =>{
       console.log(err)
@@ -95,9 +110,39 @@ export class TransactionsComponent implements OnInit {
       .subscribe( resp =>{
         this.Modal()
         MsjeOperación.textContent =  `Operacíon sealizada con éxito. Su saldo es ${resp}`
-        const saldoActual = document.getElementById('saldoActual')
-        console.log(saldoActual)
-        saldoActual.innerHTML = resp
+        document.getElementById('saldoActual').innerHTML = `${resp}`
+        this.transactionsService.accountInfo()
+      .subscribe( resp =>{
+        const detalleCont= document.getElementById('detalleOperacion')
+        detalleCont.innerHTML = ''
+        resp['OPerCuenta'].forEach(o => {
+          const detalleRowCont = document.createElement("div")
+          detalleCont.appendChild(detalleRowCont)
+          const fecha = document.createElement('div')
+          fecha.classList.add('col-md-3')
+          fecha.innerHTML = `${o['Fecha']}`
+          const movimiento = document.createElement('div')
+          movimiento.classList.add('col-md-4')
+          movimiento.innerHTML = `${o['NombreOperacion']}`
+          const destino = document.createElement('div')
+          destino.classList.add('col-md-3')
+          destino.innerHTML = `${o['Destino']}`
+          const monto = document.createElement('div')
+          monto.classList.add('col-md-3')
+          monto.innerHTML = `${o['MontoPesos']}`
+          detalleRowCont.classList.add('d-flex')
+          detalleRowCont.classList.add('flex-row')
+          detalleRowCont.classList.add('my-2') 
+          detalleRowCont.appendChild(fecha)
+          detalleRowCont.appendChild(movimiento)
+          detalleRowCont.appendChild(destino)
+          detalleRowCont.appendChild(monto)
+          console.log(o['Destino'])
+        });     
+    },
+    err =>{
+      console.log(err)
+    });
     },
     err =>{
       this.Modal()
@@ -119,11 +164,41 @@ export class TransactionsComponent implements OnInit {
     this.setValue() 
     this.transactionsService.retirarSaldo(IngresarSaldo)
       .subscribe( async resp =>{
+        document.getElementById('saldoActual').innerHTML = `${resp}`
         this.Modal()
         MsjeOperación.textContent =  `Operacíon sealizada con éxito. Su saldo es ${await resp}`
-        const saldoActual = document.getElementById('saldoActual')
-        console.log(saldoActual)
-        saldoActual.innerHTML = resp
+        this.transactionsService.accountInfo()
+      .subscribe( resp =>{
+        const detalleCont= document.getElementById('detalleOperacion')
+        detalleCont.innerHTML = ''
+        resp['OPerCuenta'].forEach(o => {
+          const detalleRowCont = document.createElement("div")
+          detalleCont.appendChild(detalleRowCont)
+          const fecha = document.createElement('div')
+          fecha.classList.add('col-md-3')
+          fecha.innerHTML = `${o['Fecha']}`
+          const movimiento = document.createElement('div')
+          movimiento.classList.add('col-md-4')
+          movimiento.innerHTML = `${o['NombreOperacion']}`
+          const destino = document.createElement('div')
+          destino.classList.add('col-md-3')
+          destino.innerHTML = `${o['Destino']}`
+          const monto = document.createElement('div')
+          monto.classList.add('col-md-3')
+          monto.innerHTML = `${o['MontoPesos']}`
+          detalleRowCont.classList.add('d-flex')
+          detalleRowCont.classList.add('flex-row')
+          detalleRowCont.classList.add('my-2') 
+          detalleRowCont.appendChild(fecha)
+          detalleRowCont.appendChild(movimiento)
+          detalleRowCont.appendChild(destino)
+          detalleRowCont.appendChild(monto)
+          console.log(o['Destino'])
+        });     
+    },
+    err =>{
+      console.log(err)
+    });
        
     },
     err =>{
@@ -147,8 +222,55 @@ export class TransactionsComponent implements OnInit {
   //Acepta el monto ingresado   
 
   public aceptarGiro() {
+    const MsjeOperación = document.querySelector('.MsjeOperación')
     var ingresarMont = document.getElementById('ingresar_giro')
     ingresarMont.classList.add("noVisible");
+    this.transactionsService.giroAlDescubierto()
+      .subscribe( async resp =>{
+        this.Modal()
+        MsjeOperación.textContent =  `Operacíon realizada con éxito. Retiró $${resp}`
+        this.transactionsService.accountInfo()
+      .subscribe( resp =>{
+        const detalleCont= document.getElementById('detalleOperacion')
+        document.getElementById('saldoActual').innerHTML = `${resp.valueOf()['saldoPesos']}`
+        detalleCont.innerHTML = ''
+        resp['OPerCuenta'].forEach(o => {
+          const detalleRowCont = document.createElement("div")
+          detalleCont.appendChild(detalleRowCont)
+          const fecha = document.createElement('div')
+          fecha.classList.add('col-md-3')
+          fecha.innerHTML = `${o['Fecha']}`
+          const movimiento = document.createElement('div')
+          movimiento.classList.add('col-md-4')
+          movimiento.innerHTML = `${o['NombreOperacion']}`
+          const destino = document.createElement('div')
+          destino.classList.add('col-md-3')
+          destino.innerHTML = `${o['Destino']}`
+          const monto = document.createElement('div')
+          monto.classList.add('col-md-3')
+          monto.innerHTML = `${o['MontoPesos']}`
+          detalleRowCont.classList.add('d-flex')
+          detalleRowCont.classList.add('flex-row')
+          detalleRowCont.classList.add('my-2') 
+          detalleRowCont.appendChild(fecha)
+          detalleRowCont.appendChild(movimiento)
+          detalleRowCont.appendChild(destino)
+          detalleRowCont.appendChild(monto)
+        });     
+        
+       
+    },
+    err =>{
+      console.log(err)
+    });
+        
+       
+    },
+    err =>{
+      this.Modal()
+      MsjeOperación.textContent =  `Lo sentimos, no se puede realizar esta operación.`
+    });
+
   }
 
   //Cancela el monto ingresado   
@@ -179,9 +301,38 @@ export class TransactionsComponent implements OnInit {
       .subscribe( async resp =>{
         this.Modal()
         MsjeOperación.textContent =  `Operacíon sealizada con éxito. Su saldo es ${await resp}`
-        const saldoActual = document.getElementById('saldoActual')
-        console.log(saldoActual)
-        saldoActual.innerHTML = resp
+        document.getElementById('saldoActual').innerHTML = resp
+        this.transactionsService.accountInfo()
+      .subscribe( resp =>{  
+        const detalleCont= document.getElementById('detalleOperacion')
+        detalleCont.innerHTML = ''
+        resp['OPerCuenta'].forEach(o => {
+          const detalleRowCont = document.createElement("div")
+          detalleCont.appendChild(detalleRowCont)
+          const fecha = document.createElement('div')
+          fecha.classList.add('col-md-3')
+          fecha.innerHTML = `${o['Fecha']}`
+          const movimiento = document.createElement('div')
+          movimiento.classList.add('col-md-4')
+          movimiento.innerHTML = `${o['NombreOperacion']}`
+          const destino = document.createElement('div')
+          destino.classList.add('col-md-3')
+          destino.innerHTML = `${o['Destino']}`
+          const monto = document.createElement('div')
+          monto.classList.add('col-md-3')
+          monto.innerHTML = `${o['MontoPesos']}`
+          detalleRowCont.classList.add('d-flex')
+          detalleRowCont.classList.add('flex-row')
+          detalleRowCont.classList.add('my-2') 
+          detalleRowCont.appendChild(fecha)
+          detalleRowCont.appendChild(movimiento)
+          detalleRowCont.appendChild(destino)
+          detalleRowCont.appendChild(monto)
+        });     
+    },
+    err =>{
+      console.log(err)
+    });
        
     },
     err =>{

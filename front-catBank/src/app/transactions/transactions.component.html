@@ -1,11 +1,11 @@
-<div class="row">
+
     <div class="col-md-10 mx-auto mt-8">
         <div class="card">
             <div class="card-body">
                 <h5 class="text-center" id="titulo_transacciones">TRANSACCIONES</h5>
                 <div>
                     <form class="form-inline align-items-start mt-5">
-                        <div class="col-md-7 ultimas_transacciones">
+                        <!-- <div class="col-md-7 ultimas_transacciones">
                             <p class="ultimas_transacciones_p ml-2">Últimas transacciones</p>
                             <div>
                                 <div class="d-flex flex-row titulos_t">
@@ -162,9 +162,46 @@
                                 </div>
                             </div>
 
-                        </div>
+                        </div> -->
                         <div class="col-md-5">
                             <div class="datos_cuenta border border-dark p-3">
+                                <div class="text-center">
+                                    <p id="datos_cuenta"><b>DATOS DE LA CUENTA</b></p>
+                                </div>
+                                <div>
+                                    <div class="d-flex flex-row">
+                                        <div class="col-md-5 text-left">
+                                            <p>CBU</p>
+                                        </div>
+                                        <div class="col-md-7 text-right">
+                                            <p id="cbuValue">12345678912</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="d-flex flex-row">
+                                        <div class="col-md-5 text-left">
+                                            <p>CVU</p>
+                                        </div>
+                                        <div class="col-md-7 text-right">
+                                            <p id="cvuValue">12345678912</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="d-flex flex-row">
+                                        <div class="col-md-5 text-left">
+                                            <p>ALIAS</p>
+                                        </div>
+                                        <div class="col-md-7 text-right">
+                                            <p id="aliasValue">MAR-ARENA-SOL</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <!-- <div class="datos_cuenta border border-dark p-3">
                                 <div class="text-center">
                                     <p id="datos_cuenta"><b>DATOS DE LA CUENTA</b></p>
                                 </div>
@@ -198,11 +235,11 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                             <div>
                                 <div class="text-center border border-dark p-3" id="saldo_disponible">
                                     <p id="saldo_disponible_p"><b>SALDO ACTUAL</b></p>
-                                    <p id= "saldoActual">50000</p>
+                                    <p id="saldoActual">50000</p>
                                 </div>
                                 <div class="text-center mt-3">
                                     <div>
@@ -212,8 +249,8 @@
                                             (click)="verIngresarMonto()">Retirar dinero</button>
                                     </div>
                                     <div>
-                                        <button type="button" class="btn btn-dark" id="btn_giro"
-                                            (click)="giro()">Giro al descubierto</button>
+                                        <button type="button" class="btn btn-dark" id="btn_giro" (click)="giro()">Giro
+                                            al descubierto</button>
 
                                         <button type="button" class="btn btn-dark" id="btn_prestamo"
                                             (click)="prestamo()">Transferencia</button>
@@ -223,13 +260,17 @@
 
                                 <div class="montos">
                                     <div class="noVisible text-center mt-5" id="ingresar_monto">
-                                        <form [formGroup]="ingresarSaldoForm" class="form_container" #formulario="ngForm">
+                                        <form [formGroup]="ingresarSaldoForm" class="form_container"
+                                            #formulario="ngForm">
                                             <div class="form-group">
-                                                <input id="Id" name="Id" type="hidden" class="form-control" formControlName="Id" [(ngModel)]="selectedingresarSaldo.Id">
+                                                <input id="Id" name="Id" type="hidden" class="form-control"
+                                                    formControlName="Id" [(ngModel)]="selectedingresarSaldo.Id">
                                             </div>
                                             <div class="form-group">
                                                 <label for="monto">Coloque el monto a ingresar</label>
-                                                <input type="number" id="ingresarSaldo" name="monto" class="form-control" formControlName="Monto" [(ngModel)]="selectedingresarSaldo.Monto" required>
+                                                <input type="number" id="ingresarSaldo" name="monto"
+                                                    class="form-control" formControlName="Monto"
+                                                    [(ngModel)]="selectedingresarSaldo.Monto" required>
                                             </div>
                                         </form>
                                         <div>
@@ -241,13 +282,17 @@
                                     </div>
 
                                     <div class="noVisible text-center mt-5" id="ingresar_monto_retirar">
-                                        <form [formGroup]="ingresarSaldoForm" class="form_container" #formulario="ngForm">
+                                        <form [formGroup]="ingresarSaldoForm" class="form_container"
+                                            #formulario="ngForm">
                                             <div class="form-group">
-                                                <input id="Id" name="Id" type="hidden" class="form-control" formControlName="Id" [(ngModel)]="selectedingresarSaldo.Id">
+                                                <input id="Id" name="Id" type="hidden" class="form-control"
+                                                    formControlName="Id" [(ngModel)]="selectedingresarSaldo.Id">
                                             </div>
                                             <div class="form-group">
                                                 <label for="monto">Coloque el monto a ingresar</label>
-                                                <input type="number" id="ingresarSaldo" name="monto" class="form-control" formControlName="Monto" [(ngModel)]="selectedingresarSaldo.Monto" required>
+                                                <input type="number" id="ingresarSaldo" name="monto"
+                                                    class="form-control" formControlName="Monto"
+                                                    [(ngModel)]="selectedingresarSaldo.Monto" required>
                                             </div>
                                         </form>
                                         <div>
@@ -256,7 +301,7 @@
                                             <button type="button" class="btn monto btn-dark"
                                                 (click)="cancelarRetiro()">Cancelar</button>
                                         </div>
-                                    </div>                            
+                                    </div>
                                 </div>
 
                                 <div class="montos">
@@ -264,7 +309,7 @@
                                         <div>
                                             <p>¿Usted desea realizar el giro?</p>
                                             <p>Se hará una extracción de su saldo actual más un 10% de este.</p>
-                                            
+
                                         </div>
                                         <div>
                                             <button type="button" class="btn monto btn-dark"
@@ -272,28 +317,36 @@
                                             <button type="button" class="btn monto btn-dark"
                                                 (click)="cancelarGiro()">Cancelar</button>
                                         </div>
-                                    </div>                                    
+                                    </div>
                                 </div>
 
 
                                 <div class="montos">
                                     <div class="noVisible text-center mt-5" id="ingresar_prestamo">
-                                        <form [formGroup]="transferirSaldoForm" class="form_container" #formulario="ngForm">
+                                        <form [formGroup]="transferirSaldoForm" class="form_container"
+                                            #formulario="ngForm">
                                             <div class="form-group">
-                                                <input id="Id" name="Id" type="hidden" class="form-control" formControlName="Id" [(ngModel)]="selectedTransferirSaldo.Id">
+                                                <input id="Id" name="Id" type="hidden" class="form-control"
+                                                    formControlName="Id" [(ngModel)]="selectedTransferirSaldo.Id">
                                             </div>
                                             <div class="form-group">
                                                 <div>
                                                     <label for="monto">Monto a transferir*</label>
-                                                    <input type="number" id="ingresarSaldo" name="monto" class="form-control" formControlName="Monto" [(ngModel)]="selectedTransferirSaldo.Monto" required>
+                                                    <input type="number" id="ingresarSaldo" name="monto"
+                                                        class="form-control" formControlName="Monto"
+                                                        [(ngModel)]="selectedTransferirSaldo.Monto" required>
                                                 </div>
                                                 <div>
                                                     <label for="monto">Alias</label>
-                                                    <input type="string" id="ingresarSaldo" name="monto" class="form-control" formControlName="Alias" [(ngModel)]="selectedTransferirSaldo.Alias" required>
+                                                    <input type="string" id="ingresarSaldo" name="monto"
+                                                        class="form-control" formControlName="Alias"
+                                                        [(ngModel)]="selectedTransferirSaldo.Alias" required>
                                                 </div>
                                                 <div>
                                                     <label for="monto">Cbu</label>
-                                                    <input type="string" id="ingresarSaldo" name="monto" class="form-control" formControlName="Cbu" [(ngModel)]="selectedTransferirSaldo.Cbu" required>
+                                                    <input type="string" id="ingresarSaldo" name="monto"
+                                                        class="form-control" formControlName="Cbu"
+                                                        [(ngModel)]="selectedTransferirSaldo.Cbu" required>
                                                 </div>
                                                 <p>Debe colocar al menos un cbu o Alias</p>
                                             </div>
@@ -304,7 +357,7 @@
                                             <button type="button" class="btn monto btn-dark"
                                                 (click)="cancelarPrestamo()">Cancelar</button>
                                         </div>
-                                    </div>                            
+                                    </div>
                                 </div>
 
                                 <div class="montos">
@@ -319,7 +372,7 @@
                                             <button type="button" class="btn monto btn-dark"
                                                 (click)="cancelarGiro()">Cancelar</button>
                                         </div>
-                                    </div>                                    
+                                    </div>
                                 </div>
 
 
@@ -330,12 +383,11 @@
                                             <input type="number" id="" name="">
                                         </div>
                                         <div>
-                                            <button type="button" class="btn monto btn-dark"
-                                                >Aceptar</button>
+                                            <button type="button" class="btn monto btn-dark">Aceptar</button>
                                             <button type="button" class="btn monto btn-dark"
                                                 (click)="cancelarPrestamo()">Cancelar</button>
                                         </div>
-                                    </div>                                    
+                                    </div>
                                 </div>
 
 
@@ -344,12 +396,47 @@
 
                         </div>
                     </form>
+                    <div>
+                        <div class="col-md-12 ultimas_transacciones">
+                            <p class="ultimas_transacciones_p ml-2">Últimas transacciones</p>
+                            <div>
+                                <div class="d-flex flex-row titulos_t">
+                                    <div class="col-md-3">
+                                        <p>Fecha</p>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <p>Movimiento</p>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <p>Cuenta destino</p>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <p>Monto</p>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div id="detalleOperacion" class="d-grid gap-5">
+
+                            </div>
+
+
+
+
+
+
+
+
+
+                        </div>
+                    </div>
 
 
                 </div>
             </div>
-
-            
+        </div>
+    </div>
             <div class="row">
                 <div id="modal_popup">
                     <div class="card text-white bg-dark mb-3 sendMail" >
@@ -360,5 +447,4 @@
                       </div>
                 </div>
             </div>
-
-           
+            
