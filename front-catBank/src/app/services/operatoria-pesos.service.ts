@@ -19,4 +19,15 @@ export class OperatoriaPesosService {
      return this.http.put<string>(this.url+'/cuentas/retirardinero', IngresarSaldo);
 
   }
+
+  transferenciaSaldo(TransferirSaldo){
+    let header = new HttpHeaders().set('Content-Type', 'aplication/json');
+     return this.http.put<string>(this.url+'/cuentas/transferencia', TransferirSaldo);
+
+  }
+  accountInfo() {
+    let authToken=  localStorage.getItem('Cliente');
+    let header = new HttpHeaders().set('Content-Type', 'aplication/json');
+    return this.http.get(this.url+'/cuentas/mostrarsaldo?id='+authToken)
+  }
 }

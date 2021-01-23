@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { OperatoriaPesos } from '../models/operatoriaPesos';
 import { OperatoriaPesosService } from '../services/operatoria-pesos.service';
 import { HttpRequest } from '@angular/common/http';
+import { TransferenciaPesos } from '../models/transferenciaModel';
 
 
 @Component({
@@ -14,10 +15,20 @@ import { HttpRequest } from '@angular/common/http';
 })
 export class TransactionsComponent implements OnInit {
   public OperatoriaPesos: OperatoriaPesos[];
+  public TransferenciaPesos: TransferenciaPesos[];
   selectedingresarSaldo: OperatoriaPesos = new OperatoriaPesos();
+  selectedTransferirSaldo: TransferenciaPesos = new TransferenciaPesos();
   setValue() {
+    this.selectedTransferirSaldo.Id = localStorage.getItem('Cliente')
     this.selectedingresarSaldo.Id = localStorage.getItem('Cliente')
   }
+  transferirSaldoForm = new FormGroup({
+    Id: new FormControl(localStorage.getItem('Cliente')),
+    Monto: new FormControl(),
+    Alias: new FormControl({value: null}),
+    Cbu: new FormControl({value: null}),
+  })
+
   ingresarSaldoForm = new FormGroup({
     Id: new FormControl(localStorage.getItem('Cliente')),
     Monto: new FormControl(),
@@ -26,6 +37,29 @@ export class TransactionsComponent implements OnInit {
   constructor(private transactionsService: OperatoriaPesosService,  private router: Router) { }
 
   ngOnInit(): void {
+    this.transactionsService.accountInfo()
+      .subscribe( resp =>{
+        console.log(resp)
+        console.log(resp.valueOf()['alias'])
+        resp['OPerCuenta'].forEach(o => {
+          console.log(o['Destino'])
+        });
+        
+        function getPropertyNames(resp) {
+          var proto = Object.getPrototypeOf(resp);
+          return (
+              (typeof proto === 'object' && proto !== null ? getPropertyNames(proto) : [])
+              .concat(Object.getOwnPropertyNames(resp))
+              .filter(function(item, pos, result) { return result.indexOf(item) === pos; })
+              .sort()
+          );
+      }
+      
+        
+    },
+    err =>{
+      console.log(err)
+    });
   }
 
 
@@ -59,14 +93,14 @@ export class TransactionsComponent implements OnInit {
     console.log(form)
     this.transactionsService.ingresarSaldo(IngresarSaldo)
       .subscribe( resp =>{
-        //this.Modal()
+        this.Modal()
         MsjeOperación.textContent =  `Operacíon sealizada con éxito. Su saldo es ${resp}`
         const saldoActual = document.getElementById('saldoActual')
         console.log(saldoActual)
         saldoActual.innerHTML = resp
     },
     err =>{
-      //this.Modal()
+      this.Modal()
       MsjeOperación.textContent =  `Lo sentimos, no se puede realizar esta operación.`
     });
   }
@@ -85,7 +119,7 @@ export class TransactionsComponent implements OnInit {
     this.setValue() 
     this.transactionsService.retirarSaldo(IngresarSaldo)
       .subscribe( async resp =>{
-        //this.Modal()
+        this.Modal()
         MsjeOperación.textContent =  `Operacíon sealizada con éxito. Su saldo es ${await resp}`
         const saldoActual = document.getElementById('saldoActual')
         console.log(saldoActual)
@@ -93,7 +127,7 @@ export class TransactionsComponent implements OnInit {
        
     },
     err =>{
-      //this.Modal()
+      this.Modal()
       MsjeOperación.textContent =  `Lo sentimos, no se puede realizar esta operación.`
     });
   }
@@ -103,10 +137,6 @@ export class TransactionsComponent implements OnInit {
     var ingresarMont = document.getElementById('ingresar_monto_retirar')
     ingresarMont.classList.add("noVisible");
   }
-
-
-
-
   //Hace visible el input del giro 
 
   public giro() {
@@ -138,9 +168,26 @@ export class TransactionsComponent implements OnInit {
 
   //Acepta el monto ingresado   
 
-  public aceptarPrestamo() {
+  public aceptarPrestamo(form: NgForm, TransferirSaldo: TransferenciaPesos) {
+    const MsjeOperación = document.querySelector('.MsjeOperación')
     var ingresarMont = document.getElementById('ingresar_prestamo')
+    console.log(form)
+    console.log(TransferirSaldo)
     ingresarMont.classList.add("noVisible");
+    this.setValue() 
+    this.transactionsService.transferenciaSaldo(TransferirSaldo)
+      .subscribe( async resp =>{
+        this.Modal()
+        MsjeOperación.textContent =  `Operacíon sealizada con éxito. Su saldo es ${await resp}`
+        const saldoActual = document.getElementById('saldoActual')
+        console.log(saldoActual)
+        saldoActual.innerHTML = resp
+       
+    },
+    err =>{
+      this.Modal()
+      MsjeOperación.textContent =  `Lo sentimos, no se puede realizar esta operación.`
+    });
   }
 
   //Cancela el monto ingresado   
@@ -149,6 +196,14 @@ export class TransactionsComponent implements OnInit {
     var ingresarMont = document.getElementById('ingresar_prestamo')
     ingresarMont.classList.add("noVisible");
   }
+  public Modal(){
+    let mailInput= document.getElementById("modal_popup")
+    console.log(mailInput)
+    mailInput.style.display = "flex"
+    document.querySelector('.close-btn').addEventListener('click', ()=> {
+    mailInput.style.display = "none"
+  })
+}
 
 
 
