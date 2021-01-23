@@ -30,4 +30,9 @@ export class OperatoriaPesosService {
     let header = new HttpHeaders().set('Content-Type', 'aplication/json');
     return this.http.get(this.url+'/cuentas/mostrarsaldo?id='+authToken)
   }
+  giroAlDescubierto() {
+    let authToken=  localStorage.getItem('Cliente');
+    let header = new HttpHeaders().set('Content-Type', 'aplication/json');
+    return this.http.put(this.url+'/cuentas/agirar?id='+authToken, authToken)
+  }
 }
