@@ -44,12 +44,7 @@ export class TransactionsComponent implements OnInit {
         resp['OPerCuenta'].forEach(o => {
           console.log(o['Destino'])
         });
-        // let op = async () => {
-        //   await resp['OPerCuenta'].forEach(o => {
-        //     console.log(o)
-        //   });
-        // }
-        // console.log(op())
+        
         function getPropertyNames(resp) {
           var proto = Object.getPrototypeOf(resp);
           return (
