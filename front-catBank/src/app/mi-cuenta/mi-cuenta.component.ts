@@ -4,6 +4,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import {authToken} from 'src/app/models/authToken';
+import { ActivarCuenta } from '../models/activarCuentaModel';
 import { ModifyUser } from '../models/ModifyUserModel';
 import { MiCuentaService } from '../services/mi-cuenta.service';
 
@@ -18,9 +19,12 @@ import { MiCuentaService } from '../services/mi-cuenta.service';
 
 
 export class MiCuentaComponent implements OnInit {
+  public activarCuenta: ActivarCuenta[];
+  selectedActivarCuenta: ActivarCuenta = new ActivarCuenta();
   public ModifyInfo: ModifyUser[];
   selectedModifyInfo: ModifyUser = new ModifyUser();
   setValue() {
+    this.selectedActivarCuenta.Id = localStorage.getItem('Cliente') 
     this.selectedModifyInfo.Id = localStorage.getItem('Cliente')
     
   }
@@ -30,6 +34,11 @@ export class MiCuentaComponent implements OnInit {
     Localidad: new FormControl({value: null, disabled: true}),
     Mail: new FormControl({value: null, disabled: true}),
     Telefono: new FormControl({value: null, disabled: true})
+  })
+
+  activarCuentaForm= new FormGroup({
+    Id: new FormControl(localStorage.getItem('Cliente')),
+    Alias: new FormControl()
   })
 
 
@@ -138,10 +147,6 @@ export class MiCuentaComponent implements OnInit {
     aceptarButton.classList.add("noVisible");
     this.setValue() 
     this.miCuentaService.modifyInfo(ModifyInfo).subscribe(resp =>{
-      
-      console.log('respuesta del servicio')
-      console.log(resp)
-      console.log('respuesta del servicio')
     },
     err =>{
       if(err.status == 401) console.log(err)
@@ -171,6 +176,19 @@ export class MiCuentaComponent implements OnInit {
     err =>{
       if(err.status == 401) console.log(err)
     });
+  }
+
+  public crearCuenta(form: NgForm, activarCuenta: ActivarCuenta) {
+    this.setValue()
+    console.log(form)
+    console.log(activarCuenta)
+    this.miCuentaService.activarCuenta(activarCuenta).subscribe(resp =>{
+      console.log(resp)
+    },
+    err =>{
+      if(err.status == 401) console.log(err)
+    });
+
   }
 
 

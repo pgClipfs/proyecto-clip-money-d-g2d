@@ -44,17 +44,18 @@ export class TransactionsComponent implements OnInit {
          document.getElementById('aliasValue').innerHTML = `${resp.valueOf()['alias']}`
         document.getElementById('saldoActual').innerHTML = `${resp.valueOf()['saldoPesos']}`
         const detalleCont= document.getElementById('detalleOperacion')
-        console.log(detalleCont)
-        console.log(resp)
-        console.log(resp.valueOf()['alias'])
         resp['OPerCuenta'].forEach(o => {
+          console.log(o['Fecha'].slice(12, 16 ))
           const detalleRowCont = document.createElement("div")
           detalleCont.appendChild(detalleRowCont)
           const fecha = document.createElement('div')
+          const hora = document.createElement('div')
+          hora.textContent = `${o['Fecha'].slice(11, 16)}`
+          hora.classList.add('col-md-1')
           fecha.classList.add('col-md-3')
-          fecha.innerHTML = `${o['Fecha']}`
+          fecha.textContent =`${o['Fecha'].slice(0, 10)}`
           const movimiento = document.createElement('div')
-          movimiento.classList.add('col-md-4')
+          movimiento.classList.add('col-md-3')
           movimiento.innerHTML = `${o['NombreOperacion']}`
           const destino = document.createElement('div')
           destino.classList.add('col-md-3')
@@ -65,11 +66,11 @@ export class TransactionsComponent implements OnInit {
           detalleRowCont.classList.add('d-flex')
           detalleRowCont.classList.add('flex-row')
           detalleRowCont.classList.add('my-2') 
+          detalleRowCont.appendChild(hora)
           detalleRowCont.appendChild(fecha)
           detalleRowCont.appendChild(movimiento)
           detalleRowCont.appendChild(destino)
           detalleRowCont.appendChild(monto)
-          console.log(o['Destino'])
         });     
     },
     err =>{
@@ -119,10 +120,13 @@ export class TransactionsComponent implements OnInit {
           const detalleRowCont = document.createElement("div")
           detalleCont.appendChild(detalleRowCont)
           const fecha = document.createElement('div')
+          const hora = document.createElement('div')
+          hora.textContent = `${o['Fecha'].slice(11, 16)}`
+          hora.classList.add('col-md-1')
           fecha.classList.add('col-md-3')
-          fecha.innerHTML = `${o['Fecha']}`
+          fecha.textContent =`${o['Fecha'].slice(0, 10)}`
           const movimiento = document.createElement('div')
-          movimiento.classList.add('col-md-4')
+          movimiento.classList.add('col-md-3')
           movimiento.innerHTML = `${o['NombreOperacion']}`
           const destino = document.createElement('div')
           destino.classList.add('col-md-3')
@@ -132,7 +136,8 @@ export class TransactionsComponent implements OnInit {
           monto.innerHTML = `${o['MontoPesos']}`
           detalleRowCont.classList.add('d-flex')
           detalleRowCont.classList.add('flex-row')
-          detalleRowCont.classList.add('my-2') 
+          detalleRowCont.classList.add('my-2')
+          detalleRowCont.appendChild(hora) 
           detalleRowCont.appendChild(fecha)
           detalleRowCont.appendChild(movimiento)
           detalleRowCont.appendChild(destino)
@@ -175,10 +180,13 @@ export class TransactionsComponent implements OnInit {
           const detalleRowCont = document.createElement("div")
           detalleCont.appendChild(detalleRowCont)
           const fecha = document.createElement('div')
+          const hora = document.createElement('div')
+          hora.textContent = `${o['Fecha'].slice(11, 16)}`
+          hora.classList.add('col-md-1')
           fecha.classList.add('col-md-3')
-          fecha.innerHTML = `${o['Fecha']}`
+          fecha.textContent =`${o['Fecha'].slice(0, 10)}`
           const movimiento = document.createElement('div')
-          movimiento.classList.add('col-md-4')
+          movimiento.classList.add('col-md-3')
           movimiento.innerHTML = `${o['NombreOperacion']}`
           const destino = document.createElement('div')
           destino.classList.add('col-md-3')
@@ -189,6 +197,7 @@ export class TransactionsComponent implements OnInit {
           detalleRowCont.classList.add('d-flex')
           detalleRowCont.classList.add('flex-row')
           detalleRowCont.classList.add('my-2') 
+          detalleRowCont.appendChild(hora)
           detalleRowCont.appendChild(fecha)
           detalleRowCont.appendChild(movimiento)
           detalleRowCont.appendChild(destino)
@@ -238,10 +247,13 @@ export class TransactionsComponent implements OnInit {
           const detalleRowCont = document.createElement("div")
           detalleCont.appendChild(detalleRowCont)
           const fecha = document.createElement('div')
+          const hora = document.createElement('div')
+          hora.textContent = `${o['Fecha'].slice(11, 16)}`
+          hora.classList.add('col-md-1')
           fecha.classList.add('col-md-3')
-          fecha.innerHTML = `${o['Fecha']}`
+          fecha.textContent =`${o['Fecha'].slice(0, 10)}`
           const movimiento = document.createElement('div')
-          movimiento.classList.add('col-md-4')
+          movimiento.classList.add('col-md-3')
           movimiento.innerHTML = `${o['NombreOperacion']}`
           const destino = document.createElement('div')
           destino.classList.add('col-md-3')
@@ -252,6 +264,7 @@ export class TransactionsComponent implements OnInit {
           detalleRowCont.classList.add('d-flex')
           detalleRowCont.classList.add('flex-row')
           detalleRowCont.classList.add('my-2') 
+          detalleRowCont.appendChild(hora)
           detalleRowCont.appendChild(fecha)
           detalleRowCont.appendChild(movimiento)
           detalleRowCont.appendChild(destino)
@@ -310,10 +323,13 @@ export class TransactionsComponent implements OnInit {
           const detalleRowCont = document.createElement("div")
           detalleCont.appendChild(detalleRowCont)
           const fecha = document.createElement('div')
+          const hora = document.createElement('div')
+          hora.textContent = `${o['Fecha'].slice(11, 16)}`
+          hora.classList.add('col-md-1')
           fecha.classList.add('col-md-3')
-          fecha.innerHTML = `${o['Fecha']}`
+          fecha.textContent =`${o['Fecha'].slice(0, 10)}`
           const movimiento = document.createElement('div')
-          movimiento.classList.add('col-md-4')
+          movimiento.classList.add('col-md-3')
           movimiento.innerHTML = `${o['NombreOperacion']}`
           const destino = document.createElement('div')
           destino.classList.add('col-md-3')
@@ -324,6 +340,7 @@ export class TransactionsComponent implements OnInit {
           detalleRowCont.classList.add('d-flex')
           detalleRowCont.classList.add('flex-row')
           detalleRowCont.classList.add('my-2') 
+          detalleRowCont.appendChild(hora)
           detalleRowCont.appendChild(fecha)
           detalleRowCont.appendChild(movimiento)
           detalleRowCont.appendChild(destino)

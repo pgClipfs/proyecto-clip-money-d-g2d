@@ -260,17 +260,19 @@
 
                                 <div class="montos">
                                     <div class="noVisible text-center mt-5" id="ingresar_monto">
-                                        <form [formGroup]="ingresarSaldoForm" class="form_container"
+                                        <form [formGroup]="ingresarSaldoForm" class="form_container operacionForm"
                                             #formulario="ngForm">
-                                            <div class="form-group">
+                                            <div class="form-group operacionForm">
                                                 <input id="Id" name="Id" type="hidden" class="form-control"
                                                     formControlName="Id" [(ngModel)]="selectedingresarSaldo.Id">
                                             </div>
-                                            <div class="form-group">
-                                                <label for="monto">Coloque el monto a ingresar</label>
-                                                <input type="number" id="ingresarSaldo" name="monto"
+                                            <div class="form-group operacionForm">
+                                                <div>
+                                                    <label for="monto">Coloque el monto a ingresar</label>
+                                                    <input type="number" id="ingresarSaldo" name="monto"
                                                     class="form-control" formControlName="Monto"
                                                     [(ngModel)]="selectedingresarSaldo.Monto" required>
+                                                </div>
                                             </div>
                                         </form>
                                         <div>
@@ -282,17 +284,20 @@
                                     </div>
 
                                     <div class="noVisible text-center mt-5" id="ingresar_monto_retirar">
-                                        <form [formGroup]="ingresarSaldoForm" class="form_container"
+                                        <div>
+                                            <form [formGroup]="ingresarSaldoForm" class="form_container operacionForm"
                                             #formulario="ngForm">
-                                            <div class="form-group">
+                                            <div class="form-group operacionForm">
                                                 <input id="Id" name="Id" type="hidden" class="form-control"
                                                     formControlName="Id" [(ngModel)]="selectedingresarSaldo.Id">
                                             </div>
-                                            <div class="form-group">
-                                                <label for="monto">Coloque el monto a ingresar</label>
-                                                <input type="number" id="ingresarSaldo" name="monto"
-                                                    class="form-control" formControlName="Monto"
-                                                    [(ngModel)]="selectedingresarSaldo.Monto" required>
+                                            <div class="form-group operacionForm">
+                                                <div>
+                                                    <label for="monto">Coloque el monto a ingresar</label>
+                                                    <input type="number" id="ingresarSaldo" name="monto"
+                                                        class="form-control" formControlName="Monto"
+                                                        [(ngModel)]="selectedingresarSaldo.Monto" required>
+                                                </div>
                                             </div>
                                         </form>
                                         <div>
@@ -300,6 +305,7 @@
                                                 (click)="retirarAceptarMonto(formulario, selectedingresarSaldo)">Aceptar</button>
                                             <button type="button" class="btn monto btn-dark"
                                                 (click)="cancelarRetiro()">Cancelar</button>
+                                        </div>
                                         </div>
                                     </div>
                                 </div>
@@ -323,13 +329,13 @@
 
                                 <div class="montos">
                                     <div class="noVisible text-center mt-5" id="ingresar_prestamo">
-                                        <form [formGroup]="transferirSaldoForm" class="form_container"
+                                        <form [formGroup]="transferirSaldoForm" class="form_container transferenciaForm"
                                             #formulario="ngForm">
-                                            <div class="form-group">
+                                            <div class="form-group transferenciaForm">
                                                 <input id="Id" name="Id" type="hidden" class="form-control"
                                                     formControlName="Id" [(ngModel)]="selectedTransferirSaldo.Id">
                                             </div>
-                                            <div class="form-group">
+                                            <div class="form-group transferenciaForm">
                                                 <div>
                                                     <label for="monto">Monto a transferir*</label>
                                                     <input type="number" id="ingresarSaldo" name="monto"
@@ -401,10 +407,10 @@
                             <p class="ultimas_transacciones_p ml-2">Últimas transacciones</p>
                             <div>
                                 <div class="d-flex flex-row titulos_t">
-                                    <div class="col-md-3">
-                                        <p>Fecha</p>
-                                    </div>
                                     <div class="col-md-4">
+                                        <p>Hora y fecha</p>
+                                    </div>
+                                    <div class="col-md-3">
                                         <p>Movimiento</p>
                                     </div>
                                     <div class="col-md-3">

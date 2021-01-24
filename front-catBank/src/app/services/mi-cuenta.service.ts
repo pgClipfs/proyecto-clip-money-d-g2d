@@ -72,4 +72,9 @@ export class MiCuentaService implements HttpInterceptor {
 
   }
 
+  activarCuenta(activarCuenta): Observable<string>{
+    let header = new HttpHeaders().set('Content-Type', 'aplication/json');
+     return this.http.post<string>(this.url+'/cuenta/activarCuenta', activarCuenta);
+  }
+
 }

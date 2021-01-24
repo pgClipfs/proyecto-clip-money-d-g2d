@@ -151,15 +151,17 @@
 
                         <div class="form-group col-md-6 cuenta">
                             <h4 class="text-center titulos">CREA TU ALIAS</h4>
-                            <div class="form-group cuenta_contenido">
-                                <label for="alias">Ingrese un alias:</label>
+                            <form [formGroup]="activarCuentaForm" #formulario="ngForm" class="form_container cuenta_contenido">
+                                <input id="id" name="id" type="hidden" class="form-control" formControlName="Id" [(ngModel)]="selectedActivarCuenta.Id">
                                 <div class="form-group">
-                                    <input type="text" placeholder="Ej: apk">
+                                    <label for="alias">Ingrese un alias:</label>
+                                    <input type="text" class="form-control" name="alias"
+                                    formControlName="Alias" [(ngModel)]="selectedActivarCuenta.Alias" placeholder="Ej: SOL-LUNA-CIELO" required>
                                 </div>
                                 <div class="form-group">
-                                    <input class="btn activar" type="submit" value="Enviar">
+                                    <input class="btn activar" type="submit" (click)="crearCuenta(formulario, selectedActivarCuenta)" value="Enviar">
                                 </div>
-                            </div>
+                            </form>
                         </div>
 
 
