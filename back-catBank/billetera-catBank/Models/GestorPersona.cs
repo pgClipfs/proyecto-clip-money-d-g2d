@@ -156,7 +156,7 @@ namespace AngularMVCProject.Models
 
         public void ModificarPersona(DatosAModificar modificar)
         {
-            using (Models.dbHomeBank db = new dbHomeBank())
+            using (dbHomeBank db = new dbHomeBank())
             {
                 var oUser = db.Clientes.Where(d => d.idCliente== modificar.Id).FirstOrDefault();
                 if (modificar.Localidad != null)

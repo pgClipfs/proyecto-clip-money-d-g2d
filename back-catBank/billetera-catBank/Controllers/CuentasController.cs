@@ -9,17 +9,15 @@ using System.Web.Http.Cors;
 
 namespace AngularMVCProject.Controllers
 {
-    /// <summary>
-    /// Creo que debe entrar como parametro el usuario de la cuenta para identificarla y hacer las operaciones en esa cuenta. 
-    /// </summary>
     [RoutePrefix("api/cuentas")]
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class CuentasController : ApiController
     {
         // GET
+
         /*
          * Verifica saldo.
-         * @Param id, id de la persona a comprobar.
+         * @Param id, id de la persona a comprobar saldo.
          * @return false si no tiene, true si tiene saldo.
          */
         [HttpGet]
@@ -36,23 +34,23 @@ namespace AngularMVCProject.Controllers
         }
 
         /*
-        * Muestra el saldo actual de la persona.
-        * @Param id, id de la persona.
-        * @return saldo, devuelve el saldo actual de la persona.
+        * Muestra el saldo actual, cbu, cvu, alias y las ultimas 10 operaciones de la cuenta de la persona.
+        * @Param id, id de la persona que verá sus datos de la cuenta.
+        * @return DatosOperaciones, devuelve el listado que se mencionó antes.
         */
         [HttpGet]
         [Route("mostrarsaldo")]
         [EnableCors(origins: "*", headers: "*", methods: "*")]
-        public decimal MostrarSaldo(int id)
+        public DatosOperaciones MostrarSaldo(int id)
         {
             GestorCuentas mostrar = new GestorCuentas();
             return mostrar.MostrarSaldo(id);
         }
 
         /*  
-        *  Ingresa monto a la cuenta, lo suma y la actualiza. Lanza excepcion si el monto es negativo y 
+        *  Ingresa monto a la cuenta, lo suma y la actualiza. Solicitud incorrecta si el monto es negativo o 
         *  si el id es 0 o negativo.
-        *  @Param monto, monto a sumar en la cuenta; id, es el id de la persona
+        *  @Param operaciones, objeto OperacionesCuenta cuyas propiedades permiten operar sobre la cuenta.
         *  @return IHttpActionResult. Satisfactorio si se pudo realizar la operacion.
         */
         [HttpPut]
@@ -91,10 +89,10 @@ namespace AngularMVCProject.Controllers
 
         /*
         *  Retira dinero de la cuenta. Se resta el saldo de la persona. Si el monto a retirar 
-        *  es mayor al que se tiene lanza excepcion. 
-        *  @Param monto, es el monto a retirar; id, es el id de la persona.
-        *  @return monto, es el monto a retirar. 
-        *  @throw new Exception();
+        *  es mayor al que se tiene devuelve solicitud incorrecta.
+        *  @Param operaciones, objeto OperacionesCuenta cuyas propiedades permiten operar sobre la cuenta.
+        *  @return IHttpActionResult, devuelve resultado satisfactorio si se pudo realizar. Caso contrario, es incorrecta la solicitud.
+        *  @throw new Excepcion(), en caso de no poder retirar dinero de la cuenta.
         */
         [HttpPut]
         [Route("retirardinero")]
@@ -118,11 +116,14 @@ namespace AngularMVCProject.Controllers
             } else
             {
                 return Ok(retirado);
-            }
-
-            
+            }            
         }
 
+        /*
+         * Realiza transferencia en pesos entre dos cuentas.
+         * @Param transferencia, detalles para poder efectuar la transferencia entre dos cuentas.
+         * @return IHttpActionResult, devuelve resultado satisfactorio si se pudo realizar. Caso contrario, es incorrecta la solicitud.
+        */
         [HttpPut]
         [Route("transferencia")]
         [EnableCors(origins: "*", headers: "*", methods: "*")]
@@ -147,10 +148,40 @@ namespace AngularMVCProject.Controllers
             {
                 return Ok(retirado);
             }
-
-
         }
 
-
+        /*
+         * Giro que hace la persona sobre su cuenta. Retira todo su saldo mas un 10% de este. Si el saldo es <= 0 no se puede realizar.
+         * @Param id, id de la persona que hara el giro sobre su cuenta.
+         * @return IHttpActionResult, devuelve resultado satisfactorio si se pudo realizar. Caso contrario, es incorrecta la solicitud.
+       */
+        [HttpPut]
+        [Route("agirar")]
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
+        public IHttpActionResult Agirar(int id)
+        {
+            bool check = true;
+            try
+            {
+                using (dbHomeBank db = new dbHomeBank())   // Contexto de BD.
+                {
+                    Cuentas laCuenta = db.Cuentas.Where(d => d.idCliente == id).FirstOrDefault();    // Llamo la tabla Cuentas, busco el idCliente del objeto y la guardo.
+                    if (laCuenta.saldoPesos <= 0)                                                   // Se comprueba si la cuenta tiene saldo negativo. No se reliza el giro si es 0 o negativo.
+                    {
+                        check = false;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+            if (check)
+            {
+                GestorCuentas girar = new GestorCuentas();
+                return Ok(girar.GirarDinero(id).ToString());
+            }
+            return BadRequest();
+        }
     }
 }

@@ -11,13 +11,11 @@ namespace AngularMVCProject.Models
         {
 			try
             {
-				using (Models.dbHomeBank db = new Models.dbHomeBank())
+				using (dbHomeBank db = new dbHomeBank())
 				{
-					var oCuenta = new Cuentas();
-					oCuenta.cbu = "353665876543";
+					var oCuenta = new Cuentas();					
 					oCuenta.alias = activarCuenta.Alias;
-					oCuenta.saldoPesos = 0;
-					oCuenta.cvu = "353665876543";
+					oCuenta.saldoPesos = 0;					
 					oCuenta.idCliente = activarCuenta.Id;
 					oCuenta.estado = true;
 

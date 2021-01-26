@@ -178,23 +178,26 @@
     <Content Include="Bundles\runtime.js" />
     <Content Include="Bundles\styles.js" />
     <Content Include="Bundles\vendor.js" />
+    <Content Include="DB_CatBank_EntityFramework.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DB_CatBank_EntityFramework.edmx</DependentUpon>
+      <LastGenOutput>DB_CatBank_EntityFramework.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="DB_CatBank_EntityFramework.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DB_CatBank_EntityFramework.edmx</DependentUpon>
+      <LastGenOutput>DB_CatBank_EntityFramework.cs</LastGenOutput>
+    </Content>
     <Content Include="Global.asax" />
-    <Content Include="Models\dbCatBank.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>dbCatBank.edmx</DependentUpon>
-      <LastGenOutput>dbCatBank.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\dbCatBank.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>dbCatBank.edmx</DependentUpon>
-      <LastGenOutput>dbCatBank.cs</LastGenOutput>
-    </Content>
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Clientes.cs">
+      <DependentUpon>DB_CatBank_EntityFramework.tt</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\CuentaController.cs" />
     <Compile Include="Controllers\CuentasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -203,33 +206,31 @@
     <Compile Include="Controllers\ResetPassController.cs" />
     <Compile Include="Controllers\TokenGenerator.cs" />
     <Compile Include="Controllers\TokenValidationHandler.cs" />
+    <Compile Include="Cuentas.cs">
+      <DependentUpon>DB_CatBank_EntityFramework.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB_CatBank_EntityFramework.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DB_CatBank_EntityFramework.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB_CatBank_EntityFramework.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DB_CatBank_EntityFramework.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB_CatBank_EntityFramework.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DB_CatBank_EntityFramework.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\activarCuenta.cs" />
-    <Compile Include="Models\Clientes.cs">
-      <DependentUpon>dbCatBank.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Cuentas.cs">
-      <DependentUpon>dbCatBank.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\DatosAModificar.cs" />
     <Compile Include="Models\datosCuenta.cs" />
-    <Compile Include="Models\dbCatBank.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>dbCatBank.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\dbCatBank.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>dbCatBank.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\dbCatBank.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>dbCatBank.edmx</DependentUpon>
-    </Compile>
+    <Compile Include="Models\DatosOperaciones.cs" />
     <Compile Include="Models\gestorCuenta.cs" />
     <Compile Include="Models\GestorCuentas.cs" />
     <Compile Include="Models\GestorLogin.cs" />
@@ -237,15 +238,16 @@
     <Compile Include="Models\GestorRecovery.cs" />
     <Compile Include="Models\LoginRequest.cs" />
     <Compile Include="Models\NewPass.cs" />
-    <Compile Include="Models\Operaciones.cs">
-      <DependentUpon>dbCatBank.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\OperacionesCuenta.cs" />
+    <Compile Include="Models\OperCuenta.cs" />
     <Compile Include="Models\Persona.cs" />
     <Compile Include="Models\Recovery.cs" />
     <Compile Include="Models\Token.cs" />
     <Compile Include="Models\Transferencia.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Operaciones.cs">
+      <DependentUpon>DB_CatBank_EntityFramework.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -255,12 +257,12 @@
     <Content Include="Bundles\runtime.js.map" />
     <Content Include="Bundles\styles.js.map" />
     <Content Include="Bundles\vendor.js.map" />
-    <EntityDeploy Include="Models\dbCatBank.edmx">
+    <EntityDeploy Include="DB_CatBank_EntityFramework.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>dbCatBank.Designer.cs</LastGenOutput>
+      <LastGenOutput>DB_CatBank_EntityFramework.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\dbCatBank.edmx.diagram">
-      <DependentUpon>dbCatBank.edmx</DependentUpon>
+    <Content Include="DB_CatBank_EntityFramework.edmx.diagram">
+      <DependentUpon>DB_CatBank_EntityFramework.edmx</DependentUpon>
     </Content>
     <None Include="packages.config" />
     <Content Include="Views\Home\Index.cshtml" />

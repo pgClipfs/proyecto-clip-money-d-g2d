@@ -50,7 +50,7 @@ namespace AngularMVCProject.Controllers
             bool getAuth = gPersona.getUserByUsername(claims);
             if (getAuth == true)
             {
-                using (Models.dbHomeBank db = new dbHomeBank())
+                using (dbHomeBank db = new dbHomeBank())
                 {
                     //System.Diagnostics.Debug.WriteLine(token.Jwt + "es el token");
                     System.Diagnostics.Debug.WriteLine(claims);

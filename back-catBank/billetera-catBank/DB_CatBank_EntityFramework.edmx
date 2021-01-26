@@ -19,20 +19,22 @@
           <Property Name="telefono" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="usuario" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="pass" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="token" Type="varchar" MaxLength="100" />
-          <Property Name="fotoFrenteDni" Type="varchar" MaxLength="50" />
-          <Property Name="fotoDorsoDni" Type="varchar" MaxLength="50" />
+          <Property Name="token" Type="varchar" MaxLength="50" />
+          <Property Name="rutaFotoFrenteDni" Type="varchar" MaxLength="200" />
+          <Property Name="fotoFrenteDni" Type="image" />
+          <Property Name="rutaFotoDorsoDni" Type="varchar" MaxLength="200" />
+          <Property Name="fotoDorsoDni" Type="image" />
         </EntityType>
         <EntityType Name="Cuentas">
           <Key>
             <PropertyRef Name="idCuenta" />
           </Key>
           <Property Name="idCuenta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="cbu" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="cbu" Type="int" StoreGeneratedPattern="Computed" />
           <Property Name="alias" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="saldoPesos" Type="money" />
           <Property Name="saldoDolares" Type="money" />
-          <Property Name="cvu" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="cvu" Type="int" StoreGeneratedPattern="Computed" />
           <Property Name="idCliente" Type="int" Nullable="false" />
           <Property Name="estado" Type="bit" />
         </EntityType>
@@ -43,7 +45,6 @@
           <Property Name="idOperacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nombreOperacion" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="montoPesos" Type="money" />
-          <Property Name="tiempoPlazo" Type="date" />
           <Property Name="destino" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="fecha" Type="datetime" Nullable="false" />
           <Property Name="montoDolares" Type="money" />
@@ -105,9 +106,11 @@
           <Property Name="telefono" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="pass" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="token" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="fotoFrenteDni" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="fotoDorsoDni" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="token" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="rutaFotoFrenteDni" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="fotoFrenteDni" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="rutaFotoDorsoDni" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="fotoDorsoDni" Type="Binary" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="Cuentas" Relationship="Self.fk_Cuentas_reference_Clientes" FromRole="Clientes" ToRole="Cuentas" />
         </EntityType>
         <EntityType Name="Cuentas">
@@ -115,11 +118,11 @@
             <PropertyRef Name="idCuenta" />
           </Key>
           <Property Name="idCuenta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="cbu" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cbu" Type="Int32" annotation:StoreGeneratedPattern="Computed" />
           <Property Name="alias" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="saldoPesos" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="saldoDolares" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="cvu" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cvu" Type="Int32" annotation:StoreGeneratedPattern="Computed" />
           <Property Name="idCliente" Type="Int32" Nullable="false" />
           <Property Name="estado" Type="Boolean" />
           <NavigationProperty Name="Clientes" Relationship="Self.fk_Cuentas_reference_Clientes" FromRole="Cuentas" ToRole="Clientes" />
@@ -132,7 +135,6 @@
           <Property Name="idOperacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nombreOperacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="montoPesos" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="tiempoPlazo" Type="DateTime" Precision="0" />
           <Property Name="destino" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="fecha" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="montoDolares" Type="Decimal" Precision="19" Scale="4" />
@@ -196,7 +198,9 @@
                 <ScalarProperty Name="usuario" ColumnName="usuario" />
                 <ScalarProperty Name="pass" ColumnName="pass" />
                 <ScalarProperty Name="token" ColumnName="token" />
+                <ScalarProperty Name="rutaFotoFrenteDni" ColumnName="rutaFotoFrenteDni" />
                 <ScalarProperty Name="fotoFrenteDni" ColumnName="fotoFrenteDni" />
+                <ScalarProperty Name="rutaFotoDorsoDni" ColumnName="rutaFotoDorsoDni" />
                 <ScalarProperty Name="fotoDorsoDni" ColumnName="fotoDorsoDni" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -221,7 +225,6 @@
                 <ScalarProperty Name="idOperacion" ColumnName="idOperacion" />
                 <ScalarProperty Name="nombreOperacion" ColumnName="nombreOperacion" />
                 <ScalarProperty Name="montoPesos" ColumnName="montoPesos" />
-                <ScalarProperty Name="tiempoPlazo" ColumnName="tiempoPlazo" />
                 <ScalarProperty Name="destino" ColumnName="destino" />
                 <ScalarProperty Name="fecha" ColumnName="fecha" />
                 <ScalarProperty Name="montoDolares" ColumnName="montoDolares" />
@@ -246,7 +249,7 @@
         <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
-        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->
